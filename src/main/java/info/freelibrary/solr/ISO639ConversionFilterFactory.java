@@ -12,7 +12,7 @@ import org.apache.lucene.analysis.util.TokenFilterFactory;
  */
 public class ISO639ConversionFilterFactory extends TokenFilterFactory {
     
-    protected ISO639ConversionFilterFactory(Map<String, String> aMap) {
+    public ISO639ConversionFilterFactory(Map<String, String> aMap) {
         super(aMap);
     }
 
