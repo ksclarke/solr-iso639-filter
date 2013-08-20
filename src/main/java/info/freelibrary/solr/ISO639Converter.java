@@ -31,7 +31,7 @@ public class ISO639Converter {
     private static Logger LOGGER = LoggerFactory
             .getLogger(ISO639Converter.class);
 
-    private static final String MAP_FILE = "ISO-639-2_utf-8.txt";
+    private static final String MAP_FILE = "/ISO-639-2_utf-8.txt";
 
     private static final Map<String, String> ISO639_1_MAP;
 
