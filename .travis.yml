@@ -5,11 +5,11 @@ jdk:
 # oraclejdk6 isn't supported
 
 env:
-  - solr.version=4.2.0
-  - solr.version-4.4.0
+  matrix:
+    - SOLR_VERSION=4.2.0
+    - SOLR_VERSION=4.4.0
 
-script:
-  - mvn install -Dsolr.version=${solr.version}
+script: "mvn install -Dsolr.version=${SOLR_VERSION}"
 
 notifications:
   email:
