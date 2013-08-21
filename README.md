@@ -41,7 +41,7 @@ You'll then need to restart Tomcat (or whatever is running your Solr instance). 
 
 You can see this by submitting a test query to your Solr instance... something like:
 
-http://localhost:8983/solr/collection1/select?q=%22UNIQUE_ID%22&wt=json&indent=true&facet=true&facet.field=iso639
+http://localhost:8983/solr/collection1/select?q=RECID&wt=json&indent=true&facet=true&facet.field=iso639
 
 If you've added an 'en' code to your record's iso639 field, for instance, you should get back JSON that contains:
 
