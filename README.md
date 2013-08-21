@@ -37,7 +37,7 @@ And, you'll add something like the following to the &lt;fields&gt; element:
 
     <field name="iso639" type="iso639Code" indexed="true" multiValued="true"/>
     
-You'll then need to restart Tomcat (or whatever is running your Solr instance).  Once you've done this you can index data into the newly configured field, and the ISO639-1 and ISO639-2 codes will be translated into plain English.
+You'll then need to restart Tomcat (or whatever is running your Solr instance).  Once you've done this, you can index data into the newly configured field and the ISO639-1 / ISO639-2 codes will be translated into plain English.
 
 ### Project Status
 
