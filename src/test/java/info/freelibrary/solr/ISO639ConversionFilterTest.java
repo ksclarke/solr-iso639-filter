@@ -42,9 +42,15 @@ public class ISO639ConversionFilterTest extends BaseTokenStreamTestCase {
 
     static void assertConvertsTo(String aInput, String[] aExpected)
             throws Exception {
-        Tokenizer tokenizer =
-                new MockTokenizer(new StringReader(aInput),
-                        MockTokenizer.KEYWORD, false);
+        Tokenizer tokenizer = new MockTokenizer(new StringReader(aInput));
+        /* Do we want a KEYWORD tokenizer?  The default is WHITESPACE.
+         * 
+         * For now, we'll use the default, but the below will need to be
+         *   backported to work with 3.x if we want to use a KEYWORD config
+         *   
+         * new MockTokenizer(new StringReader(aInput), MockTokenizer.KEYWORD,
+         *   false);
+         */
         ISO639ConversionFilter filter = new ISO639ConversionFilter(tokenizer);
         assertTokenStreamContents(filter, aExpected);
     }
