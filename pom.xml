@@ -5,7 +5,7 @@
   <groupId>info.freelibrary</groupId>
   <artifactId>solr-iso639-filter</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Solr ISO 639 Filter</name>
+  <name>Solr ISO-639 Filter</name>
   <description>Solr filter that converts ISO-639-1 and ISO-639-2 codes into text</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
