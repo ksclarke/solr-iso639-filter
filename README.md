@@ -37,7 +37,25 @@ And, you'll add something like the following to the &lt;fields&gt; element:
 
     <field name="iso639" type="iso639Code" indexed="true" multiValued="true"/>
     
-You'll then need to restart Tomcat (or whatever is running your Solr instance).  Once you've done this, you can index data into the newly configured field and the ISO639-1 / ISO639-2 codes will be translated into plain English.
+You'll then need to restart Tomcat (or whatever is running your Solr instance).  Once you've done this, you can index data into the newly configured field and the ISO639-1 / ISO639-2 codes will be translated, in the index, into plain English.
+
+You can see this by submitting a test query to your Solr instance... something like:
+
+http://localhost:8983/solr/collection1/select?q=%22UNIQUE_ID%22&wt=json&indent=true&facet=true&facet.field=iso639
+
+If you've added an 'en' code to your record's iso639 field, for instance, you should get back JSON that contains:
+
+    "facet_counts": {
+      "facet_queries": {},
+      "facet_fields": {
+        "iso639": [
+          "English",
+          1
+        ]
+      },
+      "facet_dates": {},
+      "facet_ranges": {}
+    }
 
 ### Project Status
 
