@@ -6,6 +6,7 @@ jdk:
 
 env:
   matrix:
+    - SOLR_VERSION=3.6.2
     - SOLR_VERSION=4.2.0
     - SOLR_VERSION=4.4.0
 
