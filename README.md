@@ -12,7 +12,7 @@ Once you've done this, change into the project directory and run the following c
 
     mvn install
 
-This will build the filter for Solr 4.4.0.  If you want to build for another version of Solr you can add `-Dsolr.version` as an argument; for instance:
+This will build the filter for Solr 4.4.0.  If you want to build for another version of Solr you can supply that version as an argument to the build; for instance:
 
     mvn -Dsolr.version=4.2.0 install
 
