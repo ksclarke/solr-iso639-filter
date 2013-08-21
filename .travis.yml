@@ -1,0 +1,18 @@
+language: java
+
+jdk:
+  - openjdk6
+# oraclejdk6 isn't supported
+
+env:
+  - solr.version=4.2.0
+  - solr.version-4.4.0
+
+script:
+  - mvn install -Dsolr.version=${solr.version}
+
+notifications:
+  email:
+  - ksclarke@gmail.com
+  irc:
+  - irc.freenode.org#freelibrary
