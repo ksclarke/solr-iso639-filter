@@ -75,6 +75,24 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/solr-${solr.scope}/java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.5.1</version>
@@ -107,29 +125,21 @@
           <name>!solr.version</name>
         </property>
       </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <version>1.8</version>
-            <executions>
-              <execution>
-                <id>add-source</id>
-                <phase>generate-sources</phase>
-                <goals>
-                  <goal>add-source</goal>
-                </goals>
-                <configuration>
-                  <sources>
-                    <source>src/solr-4.x/java</source>
-                  </sources>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
+      <properties>
+        <solr.scope>4.x</solr.scope>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.2.0</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.2.0</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.2</solr.scope>
+      </properties>
     </profile>
     <profile>
       <id>solr-3.6.1</id>
@@ -155,37 +165,7 @@
         <solr.scope>3.x</solr.scope>
       </properties>
     </profile>
-    <profile>
-      <id>solr-3.x</id>
-      <activation>
-        <property>
-          <name>solr.scope</name>
-          <value>3.x</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>add-source</id>
-                <phase>generate-sources</phase>
-                <goals>
-                  <goal>add-source</goal>
-                </goals>
-                <configuration>
-                  <sources>
-                    <source>src/solr-3.x/java</source>
-                  </sources>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
+    <!-- A profile just used on Travis runs to run the integration test -->
     <profile>
       <id>travis</id>
       <build>
