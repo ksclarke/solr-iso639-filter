@@ -22,7 +22,7 @@ or
 
  Once you've done this, the packaged jar file can be found in the target directory:
  
-    target/solr-iso639-filter-0.0.1-SNAPSHOT.jar
+    target/solr-iso639-filter-${solr.version}.1-SNAPSHOT.jar
     
 You'll need to put this jar in the [lib directory](http://wiki.apache.org/solr/SolrPlugins "Solr plugin lib directory details") that your Solr instance uses for plugins.  Once you've done that, you'll need to configure the filter in your schema.xml file.  This will involve defining a field type and a field that uses that type.  You'll add each to their relevant locations in the schema.xml file; for instance, you'll add something like the following to the &lt;types&gt; element:
 
