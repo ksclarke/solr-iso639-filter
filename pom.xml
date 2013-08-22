@@ -33,6 +33,11 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>net.sourceforge.htmlunit</groupId>
+      <artifactId>htmlunit</artifactId>
+      <version>2.12</version>
+    </dependency>
     <!-- we supply the logging library of our choice for our tests -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -86,6 +91,10 @@
           <systemPropertyVariables>
             <solr.scope>${solr.scope}</solr.scope>
           </systemPropertyVariables>
+          <!-- Our integration tests shouldn't be run as unit tests -->
+          <excludes>
+            <exclude>**/*IntegrationTest.java</exclude>
+          </excludes>
         </configuration>
       </plugin>
     </plugins>
@@ -171,6 +180,34 @@
                     <source>src/solr-3.x/java</source>
                   </sources>
                 </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>travis</id>
+      <build>
+        <plugins>        
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.16</version>
+            <configuration>
+              <systemPropertyVariables>
+                <solr.scope>${solr.scope}</solr.scope>
+              </systemPropertyVariables>
+              <includes>
+                <include>**/*IntegrationTest.java</include>
+              </includes>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
               </execution>
             </executions>
           </plugin>
