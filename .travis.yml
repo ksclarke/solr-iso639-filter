@@ -10,12 +10,11 @@ env:
     - SOLR_VERSION=4.2.0 SOLR_SCOPE=4.2 DEBUG=true SOLR_JARS=solr-iso639-filter-4.2.0.1-SNAPSHOT.jar
     - SOLR_VERSION=4.4.0 SOLR_SCOPE=4.x DEBUG=true SOLR_JARS=solr-iso639-filter-4.4.0.1-SNAPSHOT.jar
 
+install: mvn -DskipTests=true -Dsolr.version=${SOLR_VERSION} install
+
 before_script: curl https://raw.github.com/ksclarke/travis-solr/develop/travis-solr.sh | SOLR_VERSION="${SOLR_VERSION}" SOLR_CONFS="src/test/resources/schemas/${SOLR_SCOPE}/schema.xml" SOLR_JARS="target/${SOLR_JARS}" bash
 
-# We can skip this stage because it's handled by the script
-install: true
-
-script: "mvn -Ptravis install -Dsolr.version=${SOLR_VERSION}"
+script: mvn -Ptravis -Dsolr.version="${SOLR_VERSION}" install
 
 notifications:
   email:
