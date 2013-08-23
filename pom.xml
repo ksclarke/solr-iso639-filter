@@ -13,6 +13,48 @@
   <version>${solr.version}.1-SNAPSHOT</version>
   <name>Solr ISO-639 Filter</name>
   <description>Solr filter that converts ISO-639-1 and ISO-639-2 codes into text</description>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:git:git@github.com:ksclarke/solr-iso639-filter.git</connection>
+    <developerConnection>scm:git:git@github.com:ksclarke/solr-iso639-filter.git</developerConnection>
+    <url>git@github.com:ksclarke/solr-iso639-filter.git</url>
+  </scm>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/ksclarke/solr-iso639-filter/issues</url>
+  </issueManagement>
+  <organization>
+    <name>FreeLibrary</name>
+    <url>http://freelibrary.info</url>
+  </organization>
+  <developers>
+    <developer>
+      <email>ksclarke@gmail.com</email>
+      <name>Kevin S. Clarke</name>
+      <organization>FreeLibrary</organization>
+      <organizationUrl>http://freelibrary.info</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>America/New_York</timezone>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <email>ruestn@gmail.com</email>
+      <name>Nick Ruest</name>
+      <url>https://github.com/ruebot</url>
+      <roles>
+        <role>tester</role>
+      </roles>
+      <timezone>America/Toronto</timezone>
+    </contributor>
+  </contributors>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
