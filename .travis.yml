@@ -7,7 +7,7 @@ jdk:
 env:
   matrix:
     - SOLR_VERSION=3.6.2 SOLR_SCOPE=3.x DEBUG=true SOLR_JARS=solr-iso639-filter-3.6.2.1-SNAPSHOT.jar
-    - SOLR_VERSION=4.2.0 SOLR_SCOPE=4.2 SOLR_JARS=solr-iso639-filter-4.2.0.1-SNAPSHOT.jar
+    - SOLR_VERSION=4.2.0 SOLR_SCOPE=4.2 DEBUG=true SOLR_JARS=solr-iso639-filter-4.2.0.1-SNAPSHOT.jar
     - SOLR_VERSION=4.4.0 SOLR_SCOPE=4.x DEBUG=true SOLR_JARS=solr-iso639-filter-4.4.0.1-SNAPSHOT.jar
 
 before_script: curl https://raw.github.com/ksclarke/travis-solr/develop/travis-solr.sh | SOLR_VERSION="${SOLR_VERSION}" SOLR_CONFS="src/test/resources/schemas/${SOLR_SCOPE}/schema.xml" SOLR_JARS="target/${SOLR_JARS}" bash
