@@ -59,7 +59,6 @@
      -->
 
   <types>
-    <field name="iso639" type="iso639Code" indexed="true" multiValued="true"/>
     <!-- field type definitions. The "name" attribute is
        just a label to be used by field definitions.  The "class"
        attribute and any other attributes determine the real
@@ -866,10 +865,20 @@
         <filter class="solr.SnowballPorterFilterFactory" language="Turkish"/>
       </analyzer>
     </fieldType>
+
+    <fieldType name="iso639Code" class="solr.TextField" omitNorms="true">
+      <analyzer>
+        <tokenizer class="solr.PatternTokenizerFactory" pattern="[;,]\s*"/>
+        <filter class="info.freelibrary.solr.ISO639ConversionFilterFactory"/>
+      </analyzer>
+    </fieldType>   
+
  </types>
 
 
  <fields>
+   <field name="iso639" type="iso639Code" indexed="true" multiValued="true"/>
+
    <!-- Valid attributes for fields:
      name: mandatory - the name for the field
      type: mandatory - the name of a previously defined type from the 
@@ -995,12 +1004,6 @@
         unknown fields indexed and/or stored by default --> 
    <!--dynamicField name="*" type="ignored" multiValued="true" /-->
 
-   <fieldType name="iso639Code" class="solr.TextField" omitNorms="true">
-     <analyzer>
-       <tokenizer class="solr.PatternTokenizerFactory" pattern="[;,]\s*"/>
-       <filter class="info.freelibrary.solr.ISO639ConversionFilterFactory"/>
-     </analyzer>
-   </fieldType>   
  </fields>
 
  <!-- Field to use to determine and enforce document uniqueness. 
