@@ -161,17 +161,6 @@
     </plugins>
   </build>
   <profiles>
-    <profile>
-      <id>default</id>
-      <activation>
-        <property>
-          <name>!solr.version</name>
-        </property>
-      </activation>
-      <properties>
-        <solr.scope>4.x</solr.scope>
-      </properties>
-    </profile>
     <!--
       Below is pretty verbose way to check solr.version(s), but Maven doesn't
       give us a startsWith() check for command line properties, so...
