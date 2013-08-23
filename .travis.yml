@@ -12,6 +12,9 @@ env:
 
 before_script: curl https://raw.github.com/ksclarke/travis-solr/develop/travis-solr.sh | SOLR_VERSION="${SOLR_VERSION}" SOLR_CONFS="src/test/resources/schemas/${SOLR_SCOPE}/schema.xml" SOLR_JARS="target/${SOLR_JARS}" bash
 
+# We can skip this stage because it's handled by the script
+install: true
+
 script: "mvn -Ptravis install -Dsolr.version=${SOLR_VERSION}"
 
 notifications:
