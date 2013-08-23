@@ -64,6 +64,7 @@
      -->
 
  <fields>
+   <field name="iso639" type="iso639Code" indexed="true" multiValued="true"/>
    <!-- Valid attributes for fields:
      name: mandatory - the name for the field
      type: mandatory - the name of a field type from the 
@@ -1109,6 +1110,12 @@
       </analyzer>
     </fieldType>
 
+    <fieldType name="iso639Code" class="solr.TextField" omitNorms="true">
+      <analyzer>
+        <tokenizer class="solr.PatternTokenizerFactory" pattern="[;,]\s*"/>
+        <filter class="info.freelibrary.solr.ISO639ConversionFilterFactory"/>
+      </analyzer>
+    </fieldType>
  </types>
   
   <!-- Similarity is the scoring routine for each document vs. a query.

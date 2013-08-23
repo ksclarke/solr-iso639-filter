@@ -6,16 +6,22 @@ jdk:
 
 env:
   matrix:
-    - SOLR_VERSION=3.6.2
-    - SOLR_VERSION=4.2.0
-    - SOLR_VERSION=4.4.0
+    - SOLR_VERSION=3.6.2 SOLR_SCOPE=3.x
+    - SOLR_VERSION=4.2.0 SOLR_SCOPE=4.2
+    - SOLR_VERSION=4.4.0 SOLR_SCOPE=4.x
 
-before_script: "curl https://raw.github.com/ksclarke/travis-solr/develop/travis-solr.sh | SOLR_VERSION=${SOLR_VERSION} SOLR_CONFS=src/test/resources/schema.xml bash"
+before_script: "curl https://raw.github.com/ksclarke/travis-solr/develop/travis-solr.sh | SOLR_VERSION=${SOLR_VERSION} SOLR_CONFS=src/test/resources/schemas/${SOLR_SCOPE}/schema.xml bash"
 
 script: "mvn -Ptravis install -Dsolr.version=${SOLR_VERSION}"
 
 notifications:
   email:
-  - ksclarke@gmail.com
+    recipients:
+      - ksclarke@gmail.com
+    on_failure: change
+    on_success: change
   irc:
-  - irc.freenode.org#freelibrary
+    channels:
+      - irc.freenode.org#freelibrary
+    on_failure: always
+    on_success: always
