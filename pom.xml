@@ -166,18 +166,6 @@
       give us a startsWith() check for command line properties, so...
     -->
     <profile>
-      <id>solr-4.2.0</id>
-      <activation>
-        <property>
-          <name>solr.version</name>
-          <value>4.2.0</value>
-        </property>
-      </activation>
-      <properties>
-        <solr.scope>4.2</solr.scope>
-      </properties>
-    </profile>
-    <profile>
       <id>solr-3.6.1</id>
       <activation>
         <property>
@@ -201,11 +189,59 @@
         <solr.scope>3.x</solr.scope>
       </properties>
     </profile>
+    <profile>
+      <id>solr-4.2.0</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.2.0</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.2</solr.scope>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.2.1</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.2.1</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.2</solr.scope>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.3.0</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.3.0</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x</solr.scope>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.3.1</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.3.1</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x</solr.scope>
+      </properties>
+    </profile>
     <!-- A profile just used on Travis runs to run the integration tests -->
     <profile>
       <id>travis</id>
       <build>
-        <plugins>        
+        <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
