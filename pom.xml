@@ -82,11 +82,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>xmlunit</groupId>
-      <artifactId>xmlunit</artifactId>
-      <version>1.4</version>
+      <groupId>xom</groupId>
+      <artifactId>xom</artifactId>
+      <version>1.2.5</version>
       <scope>test</scope>
-    </dependency>
+    </dependency>    
     <!-- we supply the logging library of our choice for our tests -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
