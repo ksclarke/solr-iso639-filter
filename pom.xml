@@ -81,6 +81,12 @@
       <version>2.12</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>xmlunit</groupId>
+      <artifactId>xmlunit</artifactId>
+      <version>1.4</version>
+      <scope>test</scope>
+    </dependency>
     <!-- we supply the logging library of our choice for our tests -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
