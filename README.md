@@ -1,6 +1,6 @@
 # solr-iso639-filter
 
-A Solr filter that converts ISO-639-1 and ISO-639-2 codes into human-readable text that can be used as a Solr facet.
+A Solr filter that converts ISO-639-1 and ISO-639-2 codes into human-readable text that can be used as a Solr facet.  It has been tested against Solr versions 3.6.1 through 4.4.0.
 
 ### Getting Started
 
@@ -20,7 +20,9 @@ or
 
     mvn -Dsolr.version=3.6.2 install
 
- Once you've done this, the packaged jar file can be found in the target directory:
+>**Tip:** If you want to build the filter against an earlier version of Solr than is supported by the project, tell Maven to skip the tests (e.g.  `mvn -Dsolr.version=3.5.0 -DskipTests=true install`). The filter itself might work, but the project's unit tests are known to fail with versions of the lucene-test-framework older than 3.6.1.
+
+Once you've built the project, the packaged jar file can be found in the target directory:
  
     target/solr-iso639-filter-${solr.version}.1-SNAPSHOT.jar
     
