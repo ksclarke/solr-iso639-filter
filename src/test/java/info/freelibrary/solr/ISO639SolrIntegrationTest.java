@@ -12,11 +12,8 @@ import org.junit.Test;
 
 public class ISO639SolrIntegrationTest {
 
-    private static final String URL = "http://localhost:8983/solr";
-
-    private static final String SELECT = "/select/?q=*:*&indent=on";
-
-    private static final String FACET = "&facet=true&facet.field=iso639";
+    private static final String URL =
+            "http://localhost:8983/solr/select/?q=*:*&facet=true&facet.field=iso639";
 
     private static final String FACET_PATH = "//str[@name='facet.field']";
 
@@ -27,9 +24,9 @@ public class ISO639SolrIntegrationTest {
     @Test
     public void test() {
         try {
-            Document doc = new Builder().build(URL + SELECT + FACET);
+            Document doc = new Builder().build(URL);
             Nodes nodes = doc.query(FACET_PATH);
-            
+
             if (nodes.size() != 1) {
                 fail("Didn't find the facet.field facet in the response XML");
             }
