@@ -166,30 +166,6 @@
       give us a startsWith() check for command line properties, so...
     -->
     <profile>
-      <id>solr-3.5.0</id>
-      <activation>
-        <property>
-          <name>solr.version</name>
-          <value>3.5.0</value>
-        </property>
-      </activation>
-      <properties>
-        <solr.scope>3.x</solr.scope>
-      </properties>
-    </profile>
-    <profile>
-      <id>solr-3.6.0</id>
-      <activation>
-        <property>
-          <name>solr.version</name>
-          <value>3.6.0</value>
-        </property>
-      </activation>
-      <properties>
-        <solr.scope>3.x</solr.scope>
-      </properties>
-    </profile>
-    <profile>
       <id>solr-3.6.1</id>
       <activation>
         <property>
