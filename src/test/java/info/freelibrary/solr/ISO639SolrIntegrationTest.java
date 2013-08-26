@@ -30,7 +30,7 @@ public class ISO639SolrIntegrationTest extends XMLTestCase {
             XmlPage page = client.getPage(URL + SELECT + FACET);
             String xmlResult = page.asXml();
 
-            assertXpathEvaluatesTo("iso639", FACET_PATH, xmlResult);
+            assertXpathEvaluatesTo("\niso639\n", FACET_PATH, xmlResult);
         } catch (Exception details) {
             fail(details.getMessage());
         } finally {
