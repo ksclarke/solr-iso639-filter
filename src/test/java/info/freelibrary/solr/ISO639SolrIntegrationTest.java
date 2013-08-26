@@ -8,11 +8,6 @@ import nu.xom.Nodes;
 import nu.xom.Document;
 import nu.xom.Builder;
 
-import java.io.StringReader;
-
-import com.gargoylesoftware.htmlunit.xml.XmlPage;
-import com.gargoylesoftware.htmlunit.WebClient;
-
 import org.junit.Test;
 
 public class ISO639SolrIntegrationTest {
@@ -31,12 +26,8 @@ public class ISO639SolrIntegrationTest {
      */
     @Test
     public void test() {
-        WebClient client = new WebClient();
-        
         try {
-            XmlPage page = client.getPage(URL + SELECT + FACET);
-            StringReader reader = new StringReader(page.asXml());
-            Document doc = new Builder().build(reader);
+            Document doc = new Builder().build(URL + SELECT + FACET);
             Nodes nodes = doc.query(FACET_PATH);
             
             if (nodes.size() != 1) {
@@ -44,11 +35,8 @@ public class ISO639SolrIntegrationTest {
             }
 
             assertEquals("iso639", nodes.get(0).getValue().trim());
-            
         } catch (Exception details) {
             fail(details.getMessage());
-        } finally {
-            client.closeAllWindows();
         }
     }
 
