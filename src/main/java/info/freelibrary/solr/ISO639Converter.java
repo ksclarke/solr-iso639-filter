@@ -1,6 +1,8 @@
 
 package info.freelibrary.solr;
 
+import java.util.Iterator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,15 +30,31 @@ import java.util.Map;
  */
 public class ISO639Converter {
 
+    /**
+     * An SLF4J logger mostly just used for debugging purposes.
+     */
     private static Logger LOGGER = LoggerFactory
             .getLogger(ISO639Converter.class);
 
+    /**
+     * The source file for the ISO-639 mapping (downloaded from the Library of
+     * Congress).
+     */
     private static final String MAP_FILE = "/ISO-639-2_utf-8.txt";
 
+    /**
+     * The mapping of two digit ISO-639 codes.
+     */
     private static final Map<String, String> ISO639_1_MAP;
 
+    /**
+     * The mapping of three digit ISO-639 codes.
+     */
     private static final Map<String, String> ISO639_2_MAP;
 
+    /**
+     * The conversion of the source data file into maps that can be queried.
+     */
     static {
         InputStream in = ISO639Converter.class.getResourceAsStream(MAP_FILE);
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -54,18 +72,16 @@ public class ISO639Converter {
                             line, parts.length, parts[0], parts[2], langName);
                 }
 
-                if (parts[0].length() > 0 && langName.length() > 0) {
-                    if (iso639_2_map.put(parts[0], langName) != null) {
-                        throw new RuntimeException("Source file is corrupt; " +
-                                "duplicate map entry for: " + parts[0]);
-                    }
+                if (parts[0].length() > 0 && langName.length() > 0 &&
+                        iso639_2_map.put(parts[0], langName) != null) {
+                    throw new RuntimeException("Source file is corrupt; " +
+                            "duplicate map entry for: " + parts[0]);
                 }
 
-                if (parts[2].length() > 0 && langName.length() > 0) {
-                    if (iso639_1_map.put(parts[2], langName) != null) {
-                        throw new RuntimeException("Source file is corrupt; " +
-                                "duplicate map entry for: " + parts[2]);
-                    }
+                if (parts[2].length() > 0 && langName.length() > 0 &&
+                        iso639_1_map.put(parts[2], langName) != null) {
+                    throw new RuntimeException("Source file is corrupt; " +
+                            "duplicate map entry for: " + parts[2]);
                 }
 
                 if (langName.length() <= 0) {
@@ -90,11 +106,12 @@ public class ISO639Converter {
     }
 
     /**
-     * Converts a two or three digit ISO 639 language code into a human readable
-     * language name.
+     * Converts a two or three digit ISO-639 language code into a human readable
+     * name for the language represented by the code.
      * 
-     * @param aCode
-     * @return
+     * @param aCode A two or three digit ISO-639 code
+     * @return An English name for the language represented by the two or three
+     *         digit code
      */
     public static String convert(String aCode) {
         String langName;
@@ -131,4 +148,35 @@ public class ISO639Converter {
         return ISO639_2_MAP.size();
     }
 
+    /**
+     * Outputs the converter as XML, useful mainly just for debugging.
+     * 
+     * @return An XML formatted version of the converter's contents
+     */
+    public String toString() {
+        StringBuilder builder = new StringBuilder("<converter><iso-639-1>");
+        Iterator<String> iterator = ISO639_1_MAP.keySet().iterator();
+
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            String value = ISO639_1_MAP.get(key);
+
+            builder.append("<key name=\"").append(key).append("\" value=\"");
+            builder.append(value).append("\"/>");
+        }
+
+        builder.append("</iso-639-1><iso-639-2>");
+
+        iterator = ISO639_2_MAP.keySet().iterator();
+
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            String value = ISO639_2_MAP.get(key);
+
+            builder.append("<key name=\"").append(key).append("\" value=\"");
+            builder.append(value).append("\"/>");
+        }
+
+        return builder.append("</iso-639-2></converter>").toString();
+    }
 }

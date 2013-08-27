@@ -7,7 +7,6 @@ import static org.junit.Assert.assertEquals;
 import java.net.URL;
 
 import java.io.InputStream;
-import java.net.URLConnection;
 
 import nu.xom.Nodes;
 import nu.xom.Document;
