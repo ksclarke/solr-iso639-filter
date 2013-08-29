@@ -4,6 +4,9 @@ package info.freelibrary.solr;
 import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.net.URL;
 
 import java.io.InputStream;
@@ -15,6 +18,9 @@ import nu.xom.Builder;
 import org.junit.Test;
 
 public class ISO639SolrIntegrationTest {
+
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(ISO639SolrIntegrationTest.class);
 
     private static final String QUERY =
             "http://localhost:8983/solr/select/?q=*:*&facet=true&facet.field=iso639";
@@ -38,6 +44,10 @@ public class ISO639SolrIntegrationTest {
 
             assertEquals("iso639", nodes.get(0).getValue().trim());
         } catch (Exception details) {
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Error connecting to integration server", details);
+            }
+
             fail(details.getMessage());
         }
     }

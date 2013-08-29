@@ -6,6 +6,8 @@
         </encoder>
     </appender>
     
+    <logger name="info.freelibrary.solr.ISO639Converter" level="info"/>
+    
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>

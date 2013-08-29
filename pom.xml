@@ -4,13 +4,18 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>info.freelibrary</groupId>
   <artifactId>solr-iso639-filter</artifactId>
+
   <!--
-    Maven will warn about the below, but version shouldn't have to be static;
-    cf. http://jira.codehaus.org/browse/MNG-4715
-    
-    I may re-evaluate this decision, but going forward with it for now...
+    Maven 3.x will warn about using variables in the version, but version shouldn't
+    have to be static; cf. http://jira.codehaus.org/browse/MNG-4715
   -->
-  <version>${solr.version}.1-SNAPSHOT</version>
+
+  <!-- the below can be used to reduce copies during heavy development -->
+  <!--<version>${solr.version}-SNAPSHOT</version>-->
+
+  <!-- the below should be used for versioned releases -->
+  <version>${solr.version}-r${maven.build.timestamp}</version>
+ 
   <name>Solr ISO-639 Filter</name>
   <description>Solr filter that converts ISO-639-1 and ISO-639-2 codes into text</description>
   <url>http://projects.freelibrary.info/solr-iso639-filter</url>
@@ -34,17 +39,18 @@
     <url>http://freelibrary.info</url>
   </organization>
   <developers>
+    <!-- developers are actively contributing code and will field questions -->
     <developer>
       <email>ksclarke@gmail.com</email>
       <name>Kevin S. Clarke</name>
-      <organization>FreeLibrary</organization>
-      <organizationUrl>http://freelibrary.info</organizationUrl>
+      <url>http://kevinclarke.info</url>
       <roles>
         <role>developer</role>
       </roles>
       <timezone>America/New_York</timezone>
     </developer>
   </developers>
+  <!-- contributors have made contributions, but shouldn't be bugged -->
   <contributors>
     <contributor>
       <email>ruestn@gmail.com</email>
@@ -59,8 +65,11 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!-- version of solr that we build to as a default -->
     <solr.version>4.4.0</solr.version>
     <solr.scope>4.x-2</solr.scope>
+    <!-- since our version comes from solr version, we need to add timestamp -->
+    <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
   </properties>
   <dependencies>
     <!-- dependencies below are needed for testing -->
@@ -118,6 +127,7 @@
   </dependencies>
   <build>
     <plugins>
+      <!-- copies version dependent code into the source tree for the build -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -136,6 +146,7 @@
           </execution>
         </executions>
       </plugin>
+      <!-- copiest documentation that will be used in the public project site -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -164,6 +175,7 @@
           </execution>
         </executions>
       </plugin>
+      <!-- configures compiler to target 1.6 since some folks still stuck there -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -173,6 +185,7 @@
           <target>1.6</target>
         </configuration>
       </plugin>
+      <!-- maven site generates documentation for use in project website -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
@@ -373,6 +386,7 @@
         </configuration>
       </plugin>
     </plugins>
+    <!-- allows publishing of generated documentation to a public s3 site -->
     <extensions>
       <extension>
         <groupId>org.kuali.maven.wagons</groupId>
@@ -482,7 +496,7 @@
         <solr.scope>4.x-2</solr.scope>
       </properties>
     </profile>
-    <!-- A profile just used on Travis runs to run the integration tests -->
+    <!-- a build profile just used on Travis runs to run the integration tests -->
     <profile>
       <id>travis</id>
       <build>
@@ -511,6 +525,7 @@
         </plugins>
       </build>
     </profile>
+    <!-- build profile only used when publishing versions of this project -->
     <profile>
       <id>release-sign-artifacts</id>
       <activation>
@@ -538,12 +553,14 @@
       </build>
     </profile>
   </profiles>
+  <!-- site to upload generated documentation to on formal releases -->
   <distributionManagement>
     <site>
       <id>s3.site</id>
       <url>s3://projects.freelibrary.info/solr-iso639-filter</url>
     </site>
   </distributionManagement>
+  <!-- configuration used for publishing to the maven centralized repo -->
   <parent>
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
