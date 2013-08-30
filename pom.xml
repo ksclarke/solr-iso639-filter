@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>info.freelibrary</groupId>
   <artifactId>solr-iso639-filter</artifactId>
@@ -9,12 +7,8 @@
     Maven 3.x will warn about using variables in the version, but version shouldn't
     have to be static; cf. http://jira.codehaus.org/browse/MNG-4715
   -->
-
-  <!-- the below can be used to reduce copies during heavy development -->
-  <version>${solr.version}-SNAPSHOT</version>
-
-  <!-- the below should be used for versioned releases -->
-  <!--<version>${solr.version}-r${maven.build.timestamp}</version>-->
+  <version>${solr.version}-r20130829-SNAPSHOT</version>
+  <!--<version>${solr.version}-r20130829-SNAPSHOT</version>-->
 
   <name>Solr ISO-639 Filter</name>
   <description>Solr filter that converts ISO-639-1 and ISO-639-2 codes into text</description>
@@ -68,8 +62,6 @@
     <!-- version of solr that we build to as a default -->
     <solr.version>4.4.0</solr.version>
     <solr.scope>4.x-2</solr.scope>
-    <!-- since our version comes from solr version, we need to add timestamp -->
-    <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
   </properties>
   <dependencies>
     <!-- dependencies below are needed for testing -->
@@ -432,6 +424,8 @@
       </activation>
       <properties>
         <solr.scope>3.x</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>3.6.1</solr.version>
       </properties>
     </profile>
     <profile>
@@ -444,6 +438,8 @@
       </activation>
       <properties>
         <solr.scope>3.x</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>3.6.2</solr.version>
       </properties>
     </profile>
     <profile>
@@ -456,6 +452,8 @@
       </activation>
       <properties>
         <solr.scope>4.x-1</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.0.0</solr.version>
       </properties>
     </profile>
     <profile>
@@ -468,6 +466,8 @@
       </activation>
       <properties>
         <solr.scope>4.x-1</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.1.0</solr.version>
       </properties>
     </profile>
     <profile>
@@ -480,6 +480,8 @@
       </activation>
       <properties>
         <solr.scope>4.x-1</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.2.0</solr.version>
       </properties>
     </profile>
     <profile>
@@ -492,6 +494,8 @@
       </activation>
       <properties>
         <solr.scope>4.x-1</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.2.1</solr.version>
       </properties>
     </profile>
     <profile>
@@ -504,6 +508,8 @@
       </activation>
       <properties>
         <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.3.0</solr.version>
       </properties>
     </profile>
     <profile>
@@ -516,6 +522,8 @@
       </activation>
       <properties>
         <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.3.1</solr.version>
       </properties>
     </profile>
     <!-- a build profile just used on Travis runs to run the integration tests -->
