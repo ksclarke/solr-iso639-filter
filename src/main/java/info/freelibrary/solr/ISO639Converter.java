@@ -40,7 +40,7 @@ import java.util.Map;
  * href="http://www.loc.gov/standards/iso639-2/ISO-639-2_utf-8.txt">Library of
  * Congress' list</a>.
  * </p>
- * 
+ *
  * @author Kevin S. Clarke <ksclarke@gmail.com>
  */
 public class ISO639Converter {
@@ -93,7 +93,7 @@ public class ISO639Converter {
                     throw new RuntimeException("Source file is corrupt; " +
                             "duplicate map entry for: " + parts[0]);
                 }
-                
+
                 // Parsing out secondary three digit codes
                 if (parts[1].length() > 0 && langName.length() > 0 &&
                         iso639_2_map.put(parts[1], langName) != null) {
