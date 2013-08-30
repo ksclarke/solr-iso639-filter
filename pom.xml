@@ -9,10 +9,10 @@
   -->
 
   <!-- the below can be used to reduce copies during heavy development -->
-  <!--<version>${solr.version}-SNAPSHOT</version>-->
+  <!--<version>${solr.version}-r20130829-SNAPSHOT</version>-->
 
   <!-- the below should be used for versioned releases -->
-  <version>4.4.0-SNAPSHOT</version>
+  <version>${solr.version}-r20130829-SNAPSHOT</version>
 
   <name>Solr ISO-639 Filter</name>
   <description>Solr filter that converts ISO-639-1 and ISO-639-2 codes into text</description>
