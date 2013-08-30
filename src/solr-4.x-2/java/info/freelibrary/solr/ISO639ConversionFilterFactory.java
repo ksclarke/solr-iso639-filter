@@ -24,14 +24,14 @@ import org.apache.lucene.analysis.util.TokenFilterFactory;
 /**
  * An implementation of a {@link TokenFilterFactory} that returns a newly
  * created {@link ISO639ConversionFilter} for Solr to use.
- * 
+ *
  * @author Kevin S. Clarke <ksclarke@gmail.com>
  */
 public class ISO639ConversionFilterFactory extends TokenFilterFactory {
 
     /**
      * Constructs a new filter factory.
-     * 
+     *
      * @param aMap A map of initial values
      */
     public ISO639ConversionFilterFactory(Map<String, String> aMap) {
@@ -39,9 +39,9 @@ public class ISO639ConversionFilterFactory extends TokenFilterFactory {
     }
 
     /**
-     * Creates a new {@link ISOConversionFilter} from a supplied
+     * Creates a new {@link ISO639ConversionFilter} from a supplied
      * {@link TokenStream}.
-     * 
+     *
      * @param aTokenStream A token stream from which to create the filter
      */
     @Override
