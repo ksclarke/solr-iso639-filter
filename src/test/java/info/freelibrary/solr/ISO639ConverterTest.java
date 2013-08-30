@@ -61,7 +61,16 @@ public class ISO639ConverterTest {
      */
     @Test
     public void testThreeDigitCodeCount() {
-        assertEquals(486, ISO639Converter.threeDigitCodeMapSize());
+        assertEquals(506, ISO639Converter.threeDigitCodeMapSize());
+    }
+
+    /**
+     * Tests whether secondary three digit codes are picked up and stored.
+     */
+    @Test
+    public void secondaryThreeDigitCodesTest() {
+        assertEquals("French", ISO639Converter.convert("fra"));
+        assertEquals("German", ISO639Converter.convert("deu"));
     }
 
     /**
@@ -71,7 +80,17 @@ public class ISO639ConverterTest {
     public void testGIGO() {
         // TODO: Is GIGO desirable? Or, what else should happen?
         assertEquals("", ISO639Converter.convert(""));
-        assertEquals("Not_a_Code", ISO639Converter.convert("Not_a_Code"));
+        assertEquals("Gibberish", ISO639Converter.convert("Gibberish"));
+    }
+
+    /**
+     * Tests to make sure three digit and two digit codes that aren't
+     * established return the input code instead of a null.
+     */
+    @Test
+    public void testNonmatchingCodes() {
+        assertEquals("xxx", ISO639Converter.convert("xxx"));
+        assertEquals("xx", ISO639Converter.convert("xx"));
     }
 
     /**

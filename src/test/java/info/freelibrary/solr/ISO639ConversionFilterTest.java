@@ -97,6 +97,16 @@ public class ISO639ConversionFilterTest extends BaseTokenStreamTestCase {
     }
 
     /**
+     * Tests to make sure three digit and two digit codes that aren't
+     * established return the input code instead of a null.
+     */
+    @Test
+    public void testNonmatchingCodes() throws Exception {
+        assertConvertsTo("xxx", new String[] {"xxx"});
+        assertConvertsTo("xx", new String[] {"xx"});
+    }
+
+    /**
      * Does the work of the test using a {@link MockTokenizer}.
      * 
      * @param aInput The ISO-639 two or three digit code
@@ -110,15 +120,16 @@ public class ISO639ConversionFilterTest extends BaseTokenStreamTestCase {
                         MockTokenizer.WHITESPACE, false);
         ISO639ConversionFilter filter = new ISO639ConversionFilter(tokenizer);
         assertTokenStreamContents(filter, aExpected);
-        
+
         // TODO: Do we want to test with other tokenizers? Using WHITESPACE.
-        
-        /* Source documentation:
-         * 
-         * http://lucene.apache.org/core/3_6_2/api/test-framework/org/apache/lucene/analysis/MockTokenizer.html
-         * http://lucene.apache.org/core/4_2_0/test-framework/org/apache/lucene/analysis/MockTokenizer.html
-         * http://lucene.apache.org/core/4_4_0/test-framework/org/apache/lucene/analysis/MockTokenizer.html
-         * 
+
+        /*
+         * Source documentation: http://lucene.apache.org/core/
+         * 3_6_2/api/test-framework/org/apache/lucene/analysis/MockTokenizer.html
+         * http://lucene.apache.org/core/
+         * 4_2_0/test-framework/org/apache/lucene/analysis/MockTokenizer.html
+         * http://lucene.apache.org/core/
+         * 4_4_0/test-framework/org/apache/lucene/analysis/MockTokenizer.html
          */
     }
 }

@@ -87,12 +87,21 @@ public class ISO639Converter {
                             line, parts.length, parts[0], parts[2], langName);
                 }
 
+                // Parsing out primary three digit codes
                 if (parts[0].length() > 0 && langName.length() > 0 &&
                         iso639_2_map.put(parts[0], langName) != null) {
                     throw new RuntimeException("Source file is corrupt; " +
                             "duplicate map entry for: " + parts[0]);
                 }
+                
+                // Parsing out secondary three digit codes
+                if (parts[1].length() > 0 && langName.length() > 0 &&
+                        iso639_2_map.put(parts[1], langName) != null) {
+                    throw new RuntimeException("Source file is corrupt; " +
+                            "duplicate map entry for: " + parts[1]);
+                }
 
+                // Parsing out two digit codes
                 if (parts[2].length() > 0 && langName.length() > 0 &&
                         iso639_1_map.put(parts[2], langName) != null) {
                     throw new RuntimeException("Source file is corrupt; " +
@@ -142,7 +151,7 @@ public class ISO639Converter {
                 langName = aCode;
         }
 
-        return langName;
+        return langName == null ? aCode : langName;
     }
 
     /**
