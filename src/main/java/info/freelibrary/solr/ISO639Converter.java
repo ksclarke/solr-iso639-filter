@@ -1,3 +1,18 @@
+/**
+ * Copyright 2013 Kevin S. Clarke <ksclarke@gmail.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package info.freelibrary.solr;
 
@@ -18,8 +33,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Converts a two or three digit language code from ISO 639-1 or 639-2 into a
- * human readable language name that can be faceted.
+ * Converts a two or three digit ISO-639 code into a human-readable name that
+ * can be used as a Solr facet.
  * <p>
  * ISO 639-1 and ISO 639-2 language codes are taken from the <a
  * href="http://www.loc.gov/standards/iso639-2/ISO-639-2_utf-8.txt">Library of
@@ -150,6 +165,11 @@ public class ISO639Converter {
 
     /**
      * Outputs the converter as XML, useful mainly just for debugging.
+     * <p>
+     * We don't use an XML processing library here (like XOM), so as not to add
+     * a dependency, but the unit test for this class checks to confirm that the
+     * XML created here is well-formed.
+     * </p>
      * 
      * @return An XML formatted version of the converter's contents
      */
