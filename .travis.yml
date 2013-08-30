@@ -2,19 +2,18 @@ language: java
 
 jdk:
   - openjdk6
-# oraclejdk6 isn't supported
 
 env:
   matrix:
-    - SOLR_VERSION=3.6.1 SOLR_SCOPE=3.x DEBUG=true ISO639_JAR=solr-iso639-filter-3.6.1-SNAPSHOT.jar
-    - SOLR_VERSION=3.6.2 SOLR_SCOPE=3.x DEBUG=true ISO639_JAR=solr-iso639-filter-3.6.2-SNAPSHOT.jar
-    - SOLR_VERSION=4.0.0 SOLR_SCOPE=4.x-1 DEBUG=true ISO639_JAR=solr-iso639-filter-4.0.0-SNAPSHOT.jar
-    - SOLR_VERSION=4.1.0 SOLR_SCOPE=4.x-1 DEBUG=true ISO639_JAR=solr-iso639-filter-4.1.0-SNAPSHOT.jar
-    - SOLR_VERSION=4.2.0 SOLR_SCOPE=4.x-1 DEBUG=true ISO639_JAR=solr-iso639-filter-4.2.0-SNAPSHOT.jar
-    - SOLR_VERSION=4.2.1 SOLR_SCOPE=4.x-1 DEBUG=true ISO639_JAR=solr-iso639-filter-4.2.1-SNAPSHOT.jar
-    - SOLR_VERSION=4.3.0 SOLR_SCOPE=4.x-2 DEBUG=true ISO639_JAR=solr-iso639-filter-4.3.0-SNAPSHOT.jar
-    - SOLR_VERSION=4.3.1 SOLR_SCOPE=4.x-2 DEBUG=true ISO639_JAR=solr-iso639-filter-4.3.1-SNAPSHOT.jar
-    - SOLR_VERSION=4.4.0 SOLR_SCOPE=4.x-2 DEBUG=true ISO639_JAR=solr-iso639-filter-4.4.0-SNAPSHOT.jar
+    - SOLR_VERSION=3.6.1 SOLR_SCOPE=3.x DEBUG=true
+    - SOLR_VERSION=3.6.2 SOLR_SCOPE=3.x DEBUG=true
+    - SOLR_VERSION=4.0.0 SOLR_SCOPE=4.x-1 DEBUG=true
+    - SOLR_VERSION=4.1.0 SOLR_SCOPE=4.x-1 DEBUG=true
+    - SOLR_VERSION=4.2.0 SOLR_SCOPE=4.x-1 DEBUG=true
+    - SOLR_VERSION=4.2.1 SOLR_SCOPE=4.x-1 DEBUG=true
+    - SOLR_VERSION=4.3.0 SOLR_SCOPE=4.x-2 DEBUG=true
+    - SOLR_VERSION=4.3.1 SOLR_SCOPE=4.x-2 DEBUG=true
+    - SOLR_VERSION=4.4.0 SOLR_SCOPE=4.x-2 DEBUG=true
 
 install: "mvn -DskipTests=true -Dsolr.version=${SOLR_VERSION} install"
 
