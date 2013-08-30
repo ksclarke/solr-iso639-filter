@@ -12,7 +12,7 @@
   <!--<version>${solr.version}-SNAPSHOT</version>-->
 
   <!-- the below should be used for versioned releases -->
-  <version>${solr.version}-r${maven.build.timestamp}-SNAPSHOT</version>
+  <version>4.4.0-r20130829</version>
 
   <name>Solr ISO-639 Filter</name>
   <description>Solr filter that converts ISO-639-1 and ISO-639-2 codes into text</description>
