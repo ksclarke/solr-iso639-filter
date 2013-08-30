@@ -1,0 +1,55 @@
+These are deployment steps.  If you're not the developer who pushes to the
+centralized Maven repo, you don't need to do anything with this file.  It's
+just a crib sheet, since the process is a lot more painful than usual (due
+to the fact we upload a jar for _each_ version of Solr for each "release").
+
+============================================================================
+Release version numbers take the version from Solr and append a timestamp
+in the form of rYYYYMMDD (e.g., ${solr.version}-r20130829-SNAPSHOT)
+============================================================================
+
+mvn -Dsolr.version=4.4.0 clean deploy
+mvn -Dsolr.version=4.4.0 release:prepare
+  When asked, reset the dev version to: ${solr.version}-r20130829-SNAPSHOT
+mvn -Dsolr.version=4.4.0 release:perform
+
+mvn -Dsolr.version=4.3.1 clean deploy
+mvn -Dsolr.version=4.3.1 release:prepare
+  When asked, reset the dev version to: ${solr.version}-r20130829-SNAPSHOT
+mvn -Dsolr.version=4.3.1 release:perform
+
+mvn -Dsolr.version=4.3.0 clean deploy
+mvn -Dsolr.version=4.3.0 release:prepare
+  When asked, reset the dev version to: ${solr.version}-r20130829-SNAPSHOT
+mvn -Dsolr.version=4.3.0 release:perform
+
+mvn -Dsolr.version=4.2.1 clean deploy
+mvn -Dsolr.version=4.2.1 release:prepare
+  When asked, reset the dev version to: ${solr.version}-r20130829-SNAPSHOT
+mvn -Dsolr.version=4.2.1 release:perform
+
+mvn -Dsolr.version=4.2.0 clean deploy
+mvn -Dsolr.version=4.2.0 release:prepare
+  When asked, reset the dev version to: ${solr.version}-r20130829-SNAPSHOT
+mvn -Dsolr.version=4.2.0 release:perform
+
+mvn -Dsolr.version=4.1.0 clean deploy
+mvn -Dsolr.version=4.1.0 release:prepare
+  When asked, reset the dev version to: ${solr.version}-r20130829-SNAPSHOT
+mvn -Dsolr.version=4.1.0 release:perform
+
+mvn -Dsolr.version=4.0.0 clean deploy
+mvn -Dsolr.version=4.0.0 release:prepare
+  When asked, reset the dev version to: ${solr.version}-r20130829-SNAPSHOT
+mvn -Dsolr.version=4.0.0 release:perform
+
+mvn -Dsolr.version=3.6.2 clean deploy
+mvn -Dsolr.version=3.6.2 release:prepare
+  When asked, reset the dev version to: ${solr.version}-r20130829-SNAPSHOT
+mvn -Dsolr.version=3.6.2 release:perform
+
+mvn -Dsolr.version=3.6.1 clean deploy
+mvn -Dsolr.version=3.6.1 release:prepare
+  When asked, reset the dev version to: ${solr.version}-r20130829-SNAPSHOT
+mvn -Dsolr.version=3.6.1 release:perform
+
