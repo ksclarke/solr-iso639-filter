@@ -124,12 +124,9 @@ public class ISO639ConversionFilterTest extends BaseTokenStreamTestCase {
         // TODO: Do we want to test with other tokenizers? Using WHITESPACE.
 
         /*
-         * Source documentation: http://lucene.apache.org/core/
-         * 3_6_2/api/test-framework/org/apache/lucene/analysis/MockTokenizer.html
-         * http://lucene.apache.org/core/
-         * 4_2_0/test-framework/org/apache/lucene/analysis/MockTokenizer.html
-         * http://lucene.apache.org/core/
-         * 4_4_0/test-framework/org/apache/lucene/analysis/MockTokenizer.html
+         * Source documentation: http://lucene.apache.org/core/3_6_2/api/test-framework/org/apache/lucene/analysis/MockTokenizer.html
+         * http://lucene.apache.org/core/4_2_0/test-framework/org/apache/lucene/analysis/MockTokenizer.html
+         * http://lucene.apache.org/core/4_4_0/test-framework/org/apache/lucene/analysis/MockTokenizer.html
          */
     }
 }

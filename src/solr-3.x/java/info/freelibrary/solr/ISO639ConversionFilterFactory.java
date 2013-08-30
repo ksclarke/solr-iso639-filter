@@ -43,7 +43,7 @@ public class ISO639ConversionFilterFactory extends BaseTokenFilterFactory {
      */
     @Override
     public void init(Map<String, String> aMap) {
-        super.init(args);
+        super.init(aMap);
         assureMatchVersion();
     }
 
