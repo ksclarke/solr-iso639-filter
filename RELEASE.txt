@@ -5,7 +5,7 @@ to the fact we upload a jar for _each_ version of Solr for each "release").
 
 ============================================================================
 Release version numbers take the version from Solr and append a timestamp
-in the form of rYYYYMMDD (e.g., ${solr.version}-r20130829-SNAPSHOT)
+in the form of rYYYYMMDD (e.g., ${solr.version}-r20130829)
 ============================================================================
 
 mvn -Dsolr.version=4.4.0 clean deploy

@@ -62,8 +62,6 @@
     <!-- version of solr that we build to as a default -->
     <solr.version>4.4.0</solr.version>
     <solr.scope>4.x-2</solr.scope>
-    <!-- since our version comes from solr version, we need to add timestamp -->
-    <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
   </properties>
   <dependencies>
     <!-- dependencies below are needed for testing -->
