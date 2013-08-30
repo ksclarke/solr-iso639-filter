@@ -490,6 +490,7 @@
       </activation>
       <properties>
         <solr.scope>4.x-1</solr.scope>
+        <solr.version>4.2.1</solr.version>
       </properties>
     </profile>
     <profile>
