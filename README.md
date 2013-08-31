@@ -20,7 +20,9 @@ or
 
     mvn -Dsolr.version=3.6.2 install
 
->**Pro Tip:** If you want to build the filter against an earlier version of Solr than is supported by the project, tell Maven to skip the tests (e.g.  `mvn -Dsolr.version=3.5.0 -DskipTests=true install`). The filter itself might work, but this project's unit tests are known to fail with versions of the lucene-test-framework older than 3.6.1.
+>**Pro Tip:** If you want to build the filter against an earlier version of Solr than is supported by the project, tell Maven to skip the tests (e.g.  `mvn -Dsolr.version=3.5.0 -DskipTests=true install`).
+>
+>The filter itself might work with older versions of Solr, but this project's unit tests are known to fail with versions of the lucene-test-framework older than 3.6.1.
 
 Once you've built the project, the packaged jar file can be found in the target directory:
  
