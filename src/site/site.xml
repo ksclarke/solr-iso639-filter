@@ -64,7 +64,7 @@
         <links>
             <item name="GitHub Page ↗" target="_new"
                 href="https://github.com/ksclarke/solr-iso639-filter"/>
-            <item name="Download Jar" href="download.html"/>
+            <item name="Download" href="download.html"/>
         </links>
 
         <!-- top navbar -->
