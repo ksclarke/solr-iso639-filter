@@ -31,7 +31,7 @@ and
 
     <field name="iso639" type="iso639Code" indexed="true" multiValued="true"/>
 
-If you don't know the appropriate places in the schema.xml file, check out the documentation on our <a href="http://projects.freelibrary.info/solr-iso639-filter/">project website</a> for more detailed information.
+If you don't know the appropriate places, check out the <a href="http://projects.freelibrary.info/solr-iso639-filter/">project's documentation</a> for more detailed information.
 
 ### Project Status
 
