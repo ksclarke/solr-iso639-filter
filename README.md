@@ -31,11 +31,11 @@ and
 
     <field name="iso639" type="iso639Code" indexed="true" multiValued="true"/>
 
-If you don't know the appropriate places in the schema.xml file, check out this <a href="http://projects.freelibrary.info/solr-iso639-filter/">project's website</a> for more detailed information.
+If you don't know the appropriate places in the schema.xml file, check out the documentation on our <a href="http://projects.freelibrary.info/solr-iso639-filter/">project website</a> for more detailed information.
 
 ### Project Status
 
-[![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=master)](https://travis-ci.org/ksclarke/solr-iso639-filter) (master branch)
+[![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=master)](https://travis-ci.org/ksclarke/solr-iso639-filter) (master branch)<br/>
 [![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=develop)](https://travis-ci.org/ksclarke/solr-iso639-filter) (develop branch)
 
 ### License
