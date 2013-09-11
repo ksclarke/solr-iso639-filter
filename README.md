@@ -6,17 +6,17 @@ A Solr filter that converts ISO-639-1 and ISO-639-2 codes into human-readable te
 
 You can either download a pre-built jar file, build the project for yourself or, if you run Solr from within a Maven project, add the filter as a dependency in your pom.xml file.  You can learn about each of these options, as well as how to load and configure the filter, at the <a href="http://projects.freelibrary.info/solr-iso639-filter/">project's website</a>.
 
-### TL;DR Build Instructions
+### The TL;DR Build Instructions
 
 Not interested in following the link above?  You can build the project by typing:
 
     mvn install
     
-or, for a older version of Solr (i.e., older than 4.4.0), by supplying a version number:
+or, for a older version of Solr, by supplying a version number:
 
     mvn -Dsolr.version=3.6.2 install
     
-You'll find the resulting jar file in the `target` directory.  Add that to your Solr's lib directory.
+You'll find the resulting jar file in the 'target' directory.  Add that jar to your Solr's lib directory.
 
 To configure the filter, add the following snippets to the appropriate places in your Solr's schema.xml file:
 
@@ -31,11 +31,12 @@ and
 
     <field name="iso639" type="iso639Code" indexed="true" multiValued="true"/>
 
-If you don't know the appropriate places, check out the project site for more detailed information.
+If you don't know the appropriate places in the schema.xml file, check out this <a href="http://projects.freelibrary.info/solr-iso639-filter/">project's website</a> for more detailed information.
 
 ### Project Status
 
-[![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=master)](https://travis-ci.org/ksclarke/solr-iso639-filter)
+[![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=master)](https://travis-ci.org/ksclarke/solr-iso639-filter) (master branch)
+[![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=develop)](https://travis-ci.org/ksclarke/solr-iso639-filter) (develop branch)
 
 ### License
 
