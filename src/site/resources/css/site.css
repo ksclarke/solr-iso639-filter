@@ -56,6 +56,7 @@ h2[id]:before {
 pre {
 	background-color: #eee;
 	margin-left: 20px;
+	margin-right: 20px;
 }
 
 .nav-header {

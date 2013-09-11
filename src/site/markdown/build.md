@@ -8,7 +8,7 @@ After this, change into the project directory and run Maven:
 
     mvn install
     
-This will build the filter for the default version of Solr, 4.4.0.
+This will build the filter for the latest version of Solr supported by this project, 4.4.0.
 
 If you want to build for another version of Solr, you can supply that version as an argument to the build; for instance:
 
@@ -18,15 +18,21 @@ or
 
     mvn -Dsolr.version=3.6.2 install
     
-This should work for any of the supported versions of Solr (versions 3.6.1 through 4.4.0).  Once you've built the project, the packaged jar file can be found in the target directory:
+This should work for any of the supported versions of Solr (versions 3.6.1 through 4.4.0).
+
+### Where Is the Jar File?
+
+Once you've built the project, the packaged jar file can be found in the target directory:
 
     target/solr-iso639-filter-${solr.version}-r${timestamp}.jar
+
+### For the Adventurous...
 
 If you want to build the filter for an unsupported version of Solr, it might work, but you'll need to skip the unit tests (they're known to not work with the earlier versions of the lucene-testing-framework).  To do this, you can use:
 
     mvn -DskipTests=true -Dsolr.version=3.6.0 install
     
-If you don't see any build errors, it might work.  I'd be curious to hear about your successes and failures.
+If you don't see any build errors, it might work.  I'd be interested to hear about your successes and failures.
 
 ### What's Next?
 
