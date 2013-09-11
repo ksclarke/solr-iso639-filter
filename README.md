@@ -44,4 +44,4 @@ Apache Software License, version 2.0
 
 ### Contact
 
-If you have questions about solr-iso639-filter feel free to contact me, Kevin S. Clarke, at ksclarke@gmail.com or, if you encounter a problem, [file an issue](https://github.com/ksclarke/solr-iso639-filter/issues "GitHub Issue Queue") in this project's GitHub issue queue.
+If you have questions about solr-iso639-filter feel free to contact me, Kevin S. Clarke, at ksclarke@gmail.com or, if you encounter a problem, [file an issue](https://github.com/ksclarke/solr-iso639-filter/issues "GitHub Issue Queue").
