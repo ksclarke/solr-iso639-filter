@@ -14,7 +14,7 @@
 # Last Updated: 2013-11-11
 # License: Apache License, Version 2.0
 #
-# System Dependencies: sed, grep, mvn
+# System Dependencies: sed, grep, mvn, git
 ##
 
 # The current solr-iso639-filter release version.  Release version numbers use
@@ -61,6 +61,7 @@ done
 if grep -q "${SV}-SNAPSHOT" pom.xml; then
   DEV_BRANCH=true
   sed -i -e "s/${SV}-SNAPSHOT/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
+  git commit -am "temporarily changing pom.xml's version via release script"
 fi
 
 # Output a little reminder to delete any artifacts created through testing
