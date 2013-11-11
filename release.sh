@@ -9,6 +9,8 @@
 #     ./release 4.4.0 4.5.0 4.5.1
 #     ./release
 #
+# For the release to be able to sign the artifacts, GPG will ask for a passphrase
+#
 # Written by: Kevin S. Clarke <ksclarke@gmail.com>
 # Created: 2013-11-11
 # Last Updated: 2013-11-11
@@ -82,7 +84,7 @@ do
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion="${SV}-${RELEASE_VERSION}" -Dresume=false \
         -DdevelopmentVersion="${SV}-${RELEASE_VERSION}-SNAPSHOT"
-      #mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
+      mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
     fi
   done
 done
