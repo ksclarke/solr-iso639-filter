@@ -85,8 +85,8 @@ do
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion="${SV}-${RELEASE_VERSION}" -Dresume=false \
         -DdevelopmentVersion="${SV}-${RELEASE_VERSION}-SNAPSHOT" \
-        -DmavenHome=${MAVEN_HOME}
-      mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
+        -DmavenHome=${MAVEN_HOME} -X -DdryRun=true
+      #mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
     fi
   done
 done
