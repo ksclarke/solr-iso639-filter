@@ -21,11 +21,14 @@
 # the form of rYYYYMMDD; they represent code changes in the filter itself...
 RELEASE_VERSION="r20130829"
 
-# Just isolating this in case I want to use this script for another Solr filter or ?
-RELEASE_ARTIFACT="solr-iso639-filter"
-
 # The versions of Solr that are supported by this script
 SOLR_VERSIONS="3.6.1 3.6.2 4.0.0 4.1.0 4.2.0 4.2.1 4.3.0 4.3.1 4.4.0 4.5.0 4.5.1"
+
+# This is the location on Ubuntu; may need to be changed on other OSes/distros
+MAVEN_HOME="/usr/share/maven"
+
+# Just isolating this in case I want to use this script for another Solr filter or ?
+RELEASE_ARTIFACT="solr-iso639-filter"
 
 # This hard-coded string that allows us to swap in the right Solr version number
 SV="\${solr.version}"
@@ -81,7 +84,8 @@ do
       mvn -Dsolr.version=${SOLR_VERSION} -B -q release:prepare \
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion="${SV}-${RELEASE_VERSION}" -Dresume=false \
-        -DdevelopmentVersion="${SV}-${RELEASE_VERSION}-SNAPSHOT"
+        -DdevelopmentVersion="${SV}-${RELEASE_VERSION}-SNAPSHOT" \
+        -DmavenHome=${MAVEN_HOME}
       mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
     fi
   done
