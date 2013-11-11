@@ -5,15 +5,9 @@
 
   <!--
     Maven 3.x will warn about using variables in the version, but version shouldn't
-    have to be static; cf. http://jira.codehaus.org/browse/MNG-4715
+    really _have_ to be static; cf. http://jira.codehaus.org/browse/MNG-4715
   -->
   <version>${solr.version}-SNAPSHOT</version>
-  <!-- last stable version -->
-  <!--<version>${solr.version}-r20130829</version>-->
-  <!-- last deploy version -->
-  <!--<version>${solr.version}-r20130829-SNAPSHOT</version>-->
-  <!-- last dev version -->
-  <!--<version>${solr.version}-SNAPSHOT</version>-->
 
   <name>Solr ISO-639 Filter</name>
   <description>Solr filter that converts ISO-639-1 and ISO-639-2 codes into text</description>
@@ -65,7 +59,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- version of solr that we build to as a default -->
-    <solr.version>4.4.0</solr.version>
+    <solr.version>4.5.1</solr.version>
     <solr.scope>4.x-2</solr.scope>
   </properties>
   <dependencies>
@@ -143,7 +137,7 @@
           </execution>
         </executions>
       </plugin>
-      <!-- copiest documentation that will be used in the public project site -->
+      <!-- copies documentation that will be used in the public project site -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -257,7 +251,7 @@
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-surefire-plugin</artifactId>
-              <version>2.15</version>
+              <version>2.16</version>
               <configuration>
                 <forkCount>3</forkCount>
                 <reuseForks>true</reuseForks>
@@ -529,6 +523,34 @@
         <solr.scope>4.x-2</solr.scope>
         <!-- redundant, but `mvn release:prepare` needs this -->
         <solr.version>4.3.1</solr.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.4.0</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.4.0</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.4.0</solr.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.5.0</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.5.0</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.5.0</solr.version>
       </properties>
     </profile>
     <!-- a build profile just used on Travis runs to run the integration tests -->
