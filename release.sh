@@ -83,17 +83,17 @@ do
       mvn -q release:prepare -Dsolr.version=${SOLR_VERSION} -X \
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion=${SV}-${RELEASE_VERSION} -Dresume=false \
-        -DdevelopmentVersion=${RELEASE_VERSION}-SNAPSHOT
+        -DdevelopmentVersion=${SV}-${RELEASE_VERSION}-SNAPSHOT
       mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
-      sed -i -e "s/${RELEASE_VERSION}-SNAPSHOT/${SV}-SNAPSHOT/" pom.xml
+      sed -i -e "s/${SOLR_VERSION}-${RELEASE_VERSION}-SNAPSHOT/${SV}-SNAPSHOT/" pom.xml
       #FIXME devVersion get value instead of ${solr.version}; sed to fix this?
     fi
   done
 done
 
 # If on the 'develop' branch, put the pom.xml's version back the way it should be
-if $DEV_BRANCH; then
-  sed -i -e "s/${SV}-${RELEASE_VERSION}-SNAPSHOT/${SV}-SNAPSHOT/" pom.xml
+if ! $DEV_BRANCH; then
+  sed -i -e "s/${SV}-SNAPSHOT/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
 fi
 
 # One last little cosmetic EOL to make the output easier to read
