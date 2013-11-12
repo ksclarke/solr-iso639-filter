@@ -80,11 +80,10 @@ do
       echo ""
       echo "Publishing ${RELEASE_ARTIFACT} version: ${SOLR_VERSION}"
       mvn -Dsolr.version=${SOLR_VERSION} -q clean deploy
-      # -Dsolr.version=${SOLR_VERSION}
-      mvn -q release:prepare \
+      mvn -q release:prepare -Dsolr.version=${SOLR_VERSION} -X \
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion=${SV}-${RELEASE_VERSION} -Dresume=false \
-        -DdevelopmentVersion=${SV}-${RELEASE_VERSION}-SNAPSHOT -X
+        -DdevelopmentVersion="\${SV}-${RELEASE_VERSION}-SNAPSHOT"
       mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
     fi
   done
