@@ -83,8 +83,10 @@ do
       mvn -q release:prepare -Dsolr.version=${SOLR_VERSION} -X \
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion=${SV}-${RELEASE_VERSION} -Dresume=false \
-        -DdevelopmentVersion="\${SV}-${RELEASE_VERSION}-SNAPSHOT"
+        -DdevelopmentVersion=${RELEASE_VERSION}-SNAPSHOT
       mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
+      sed -i -e "s/${RELEASE_VERSION}-SNAPSHOT/${SV}-SNAPSHOT/" pom.xml
+      #FIXME devVersion get value instead of ${solr.version}; sed to fix this?
     fi
   done
 done
