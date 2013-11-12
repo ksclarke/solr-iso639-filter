@@ -67,7 +67,7 @@ if grep -q "${SV}-SNAPSHOT" pom.xml; then
 fi
 
 # Output a little reminder to delete any artifacts created through testing
-if grep -q "${SV}-${RELEASE_VERSION}-SNAPSHOT" pom.xml; then
+if $DEV_BRANCH; then
   echo "Running on the 'develop' branch -- PLEASE DELETE ALL ARTIFACTS!"
 fi
 
@@ -80,18 +80,21 @@ do
       echo ""
       echo "Publishing ${RELEASE_ARTIFACT} version: ${SOLR_VERSION}"
       mvn -Dsolr.version=${SOLR_VERSION} -q clean deploy
-      mvn -q release:prepare -Dsolr.version=${SOLR_VERSION} -X \
+      mvn -q release:prepare -Dsolr.version=${SOLR_VERSION} \
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion=${SV}-${RELEASE_VERSION} -Dresume=false \
         -DdevelopmentVersion=${SV}-${RELEASE_VERSION}-SNAPSHOT
       mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
-      sed -i -e "s/${SOLR_VERSION}-${RELEASE_VERSION}-SNAPSHOT/${SV}-SNAPSHOT/" pom.xml
-      #FIXME devVersion get value instead of ${solr.version}; sed to fix this?
+
+      # ${SV} is swapped out with ${SOLR_VERSION}; we need to set it back
+      SOLR_STAMP=${SOLR_VERSION}-${RELEASE_VERSION}-SNAPSHOT
+      sed -i -e "s/${SOLR_STAMP}/${SV}-SNAPSHOT/" pom.xml
+      git commit -am "changing pom.xml's version via release script"
     fi
   done
 done
 
-# If on the 'develop' branch, put the pom.xml's version back the way it should be
+# If not on 'develop' branch, put the pom.xml's version back the way it should be
 if ! $DEV_BRANCH; then
   sed -i -e "s/${SV}-SNAPSHOT/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
 fi
