@@ -82,8 +82,8 @@ do
       mvn -Dsolr.version=${SOLR_VERSION} -q clean deploy
       mvn -Dsolr.version=${SOLR_VERSION} -q release:prepare \
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
-        -DreleaseVersion=${SV}-${RELEASE_VERSION} -Dresume=false \
-        -DdevelopmentVersion=${SV}-${RELEASE_VERSION}-SNAPSHOT -X
+        -DreleaseVersion="\${solr.version}-${RELEASE_VERSION}" -Dresume=false \
+        -DdevelopmentVersion="\${solr.version}-${RELEASE_VERSION}-SNAPSHOT" -X
       mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
     fi
   done
