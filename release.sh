@@ -88,6 +88,13 @@ do
       # We want to catch passphrase errors since they're subject to typos
       STATUS=$?
       if [ $STATUS -ne 0 ]; then
+        LABEL=${SOLR_VERSION}-${RELEASE_VERSION}
+        if ! $DEV_BRANCH; then
+          sed -i -e "s/${LABEL}/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
+        else
+          sed -i -e "s/${LABEL}/${SV}-SNAPSHOT/" pom.xml
+        fi
+
         echo "There was an error while preparing for release; check output"
         exit 1
       fi
