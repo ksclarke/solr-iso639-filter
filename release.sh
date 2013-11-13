@@ -64,10 +64,8 @@ if grep -q "${SV}-SNAPSHOT" pom.xml; then
   DEV_BRANCH=true
   sed -i -e "s/${SV}-SNAPSHOT/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
   git commit -am "changing pom.xml's version via release script [skip ci]"
-fi
 
-# Output a little reminder to delete any artifacts created through testing
-if $DEV_BRANCH; then
+  # Output a little reminder to delete any artifacts created through testing
   echo "Running on the 'develop' branch -- PLEASE DELETE ALL ARTIFACTS!"
 fi
 
@@ -91,18 +89,19 @@ do
         LABEL=${SOLR_VERSION}-${RELEASE_VERSION}
         if ! $DEV_BRANCH; then
           sed -i -e "s/${LABEL}/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
-          git add pom.xml
-          git commit -m "changing pom.xml's version via release script [skip ci]"
         else
           sed -i -e "s/${LABEL}/${SV}-SNAPSHOT/" pom.xml
-          git add pom.xml
-          git commit -m "changing pom.xml's version via release script [skip ci]"
         fi
 
-        echo "There was an error while preparing for release; check output"
+        # Record the change to the pom.xml version in git so we have clean slate
+        git add pom.xml
+        git commit -m "changing pom.xml's version via release script [skip ci]"
+
+        echo "There was a preparation error; please check the script's output"
         exit 1
       fi
 
+      # We're good to publish the official release
       mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
 
       # ${SV} is swapped out with ${SOLR_VERSION}; we need to set it back
