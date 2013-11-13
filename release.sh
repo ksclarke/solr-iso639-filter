@@ -32,6 +32,9 @@ RELEASE_ARTIFACT="solr-iso639-filter"
 # This hard-coded string that allows us to swap in the right Solr version number
 SV="\${solr.version}"
 
+# Whether we're running in 'develop' (for testing) or 'master' (for realz)
+DEV_BRANCH=false
+
 # Check to see if we've passed in a subset of Solr versions to use
 if [ $# -eq 0 ]; then
   read -a SOLR_SUBSET <<< "$SOLR_VERSIONS"
