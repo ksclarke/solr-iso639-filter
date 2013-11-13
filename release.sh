@@ -91,8 +91,12 @@ do
         LABEL=${SOLR_VERSION}-${RELEASE_VERSION}
         if ! $DEV_BRANCH; then
           sed -i -e "s/${LABEL}/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
+          git add pom.xml
+          git commit -m "changing pom.xml's version via release script [skip ci]"
         else
           sed -i -e "s/${LABEL}/${SV}-SNAPSHOT/" pom.xml
+          git add pom.xml
+          git commit -m "changing pom.xml's version via release script [skip ci]"
         fi
 
         echo "There was an error while preparing for release; check output"
