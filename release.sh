@@ -63,7 +63,7 @@ done
 if grep -q "${SV}-SNAPSHOT" pom.xml; then
   DEV_BRANCH=true
   sed -i -e "s/${SV}-SNAPSHOT/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
-  git commit -am "temporarily changing pom.xml's version via release script"
+  git commit -am "changing pom.xml's version via release script [skip ci]"
 fi
 
 # Output a little reminder to delete any artifacts created through testing
@@ -89,7 +89,7 @@ do
       # ${SV} is swapped out with ${SOLR_VERSION}; we need to set it back
       SOLR_STAMP=${SOLR_VERSION}-${RELEASE_VERSION}-SNAPSHOT
       sed -i -e "s/${SOLR_STAMP}/${SV}-SNAPSHOT/" pom.xml
-      git commit -am "changing pom.xml's version via release script"
+      git commit -am "changing pom.xml's version via release script [skip ci]"
     fi
   done
 done
