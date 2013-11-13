@@ -84,6 +84,14 @@ do
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion=${SV}-${RELEASE_VERSION} -Dresume=false \
         -DdevelopmentVersion=${SV}-${RELEASE_VERSION}-SNAPSHOT
+
+      # We want to catch passphrase errors since they're subject to typos
+      STATUS=$?
+      if [ $STATUS -ne 0 ]; then
+        echo "There was an error while preparing for release; check output"
+        exit 1
+      fi
+
       mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
 
       # ${SV} is swapped out with ${SOLR_VERSION}; we need to set it back
