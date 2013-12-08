@@ -94,6 +94,20 @@ public class ISO639ConverterTest {
     }
 
     /**
+     * Tests to ensure that incoming case of codes is normalized before doing
+     * the lookup.
+     */
+    @Test
+    public void testCaseInsensitiveCodeLookup() {
+        assertEquals("French", ISO639Converter.convert("FRA"));
+        assertEquals("French", ISO639Converter.convert("Fra"));
+        assertEquals("English", ISO639Converter.convert("EN"));
+        assertEquals("English", ISO639Converter.convert("En"));
+        assertEquals("English", ISO639Converter.convert("ENG"));
+        assertEquals("English", ISO639Converter.convert("Eng"));
+    }
+
+    /**
      * Tests to make sure that the hand-built XML from toString() is actually
      * well-formed. Putting this check in a test saves me from having to make
      * XOM a dependency of the filter.

@@ -59,7 +59,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- version of solr that we build to as a default -->
-    <solr.version>4.5.1</solr.version>
+    <solr.version>4.6.0</solr.version>
     <solr.scope>4.x-2</solr.scope>
   </properties>
   <dependencies>
@@ -551,6 +551,20 @@
         <solr.scope>4.x-2</solr.scope>
         <!-- redundant, but `mvn release:prepare` needs this -->
         <solr.version>4.5.0</solr.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.5.1</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.5.1</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.5.1</solr.version>
       </properties>
     </profile>
     <!-- a build profile just used on Travis runs to run the integration tests -->

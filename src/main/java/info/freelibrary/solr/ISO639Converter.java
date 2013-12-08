@@ -142,10 +142,10 @@ public class ISO639Converter {
 
         switch (aCode.length()) {
             case 2:
-                langName = ISO639_1_MAP.get(aCode);
+                langName = ISO639_1_MAP.get(aCode.toLowerCase());
                 break;
             case 3:
-                langName = ISO639_2_MAP.get(aCode);
+                langName = ISO639_2_MAP.get(aCode.toLowerCase());
                 break;
             default:
                 langName = aCode;
