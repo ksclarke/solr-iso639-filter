@@ -248,7 +248,7 @@
                 <include>**/coders-welcome.md</include>
                 <include>**/testers-welcome.md</include>
                 <include>**/translators-welcome.md</include>
-                <include>**/documentors-welcome.md</include>
+                <include>**/documenters-welcome.md</include>
               </includes>
             </fileset>
           </filesets>
