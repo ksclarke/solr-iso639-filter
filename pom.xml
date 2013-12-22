@@ -61,6 +61,9 @@
     <!-- version of solr that we build to as a default -->
     <solr.version>4.6.0</solr.version>
     <solr.scope>4.x-2</solr.scope>
+    <!-- other versions used multiple times in the pom -->
+    <freelib.build.tools.version>0.0.1</freelib.build.tools.version>
+    <maven.checkstyle.version>2.10</maven.checkstyle.version>
   </properties>
   <dependencies>
     <!-- dependencies below are needed for testing -->
@@ -117,11 +120,31 @@
     </dependency>
   </dependencies>
   <build>
+    <resources>
+      <!-- site's markdown template resources -->
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.md</include>
+        </includes>
+        <targetPath>${basedir}/src</targetPath>
+      </resource>
+      <!-- normal types of project resources -->
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+        <excludes>
+          <exclude>**/*.md</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <plugins>
       <!-- copies version dependent code into the source tree for the build -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.8</version>
         <executions>
           <execution>
             <id>add-source</id>
@@ -137,31 +160,68 @@
           </execution>
         </executions>
       </plugin>
-      <!-- copies documentation that will be used in the public project site -->
+      <!-- checks project's code for conformance to coding standards -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.6</version>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${maven.checkstyle.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>info.freelibrary</groupId>
+            <artifactId>freelib-build-tools</artifactId>
+            <version>${freelib.build.tools.version}</version>
+          </dependency>
+        </dependencies>
         <configuration>
-          <encoding>${project.build.sourceEncoding}</encoding>
+          <consoleOutput>true</consoleOutput>
+          <!-- these checks are loaded from the freelib-build-tools jar -->
+          <configLocation>checkstyle/checkstyle.xml</configLocation>
+          <!-- these suppressions are project specific -->
+          <suppressionsLocation>${project.build.directory}/classes/checkstyle-suppressions.xml</suppressionsLocation>
         </configuration>
         <executions>
           <execution>
-            <id>copy-resources</id>
-            <phase>validate</phase>
+            <id>checkstyle</id>
+            <phase>verify</phase>
             <goals>
-              <goal>copy-resources</goal>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- extracts project site's css and js from freelib-build-tools jar -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.8</version>
+        <executions>
+          <execution>
+            <id>unpack</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>unpack</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/site</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>src/site/resources/eclipse</directory>
-                </resource>
-                <resource>
-                  <directory>src/site/resources/checkstyle</directory>
-                </resource>
-              </resources>
+              <artifactItems>
+                <!-- copies the site stylesheets into the project -->
+                <artifactItem>
+                  <groupId>info.freelibrary</groupId>
+                  <artifactId>freelib-build-tools</artifactId>
+                  <version>${freelib.build.tools.version}</version>
+                  <type>jar</type>
+                  <includes>**/*.css,**/*.js</includes>
+                  <outputDirectory>${project.build.directory}</outputDirectory>
+                </artifactItem>
+                <!-- copies site templates into the resources directory -->
+                <artifactItem>
+                  <groupId>info.freelibrary</groupId>
+                  <artifactId>freelib-build-tools</artifactId>
+                  <version>${freelib.build.tools.version}</version>
+                  <type>jar</type>
+                  <includes>**/*.md</includes>
+                  <outputDirectory>${basedir}/src/main/resources</outputDirectory>
+                </artifactItem>
+              </artifactItems>
             </configuration>
           </execution>
         </executions>
@@ -174,6 +234,24 @@
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
+        </configuration>
+      </plugin>
+      <!-- cleans up build artifacts -->
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>${basedir}/src</directory>
+              <includes>
+                <include>**/coders-welcome.md</include>
+                <include>**/testers-welcome.md</include>
+                <include>**/translators-welcome.md</include>
+                <include>**/documentors-welcome.md</include>
+              </includes>
+            </fileset>
+          </filesets>
         </configuration>
       </plugin>
       <!-- instructs javadocs plugin to run in aggregation mode -->
@@ -215,14 +293,6 @@
           <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
           <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
           <reportPlugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-jxr-plugin</artifactId>
-              <version>2.3</version>
-              <configuration>
-                <aggregate>true</aggregate>
-              </configuration>
-            </plugin>
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>jdepend-maven-plugin</artifactId>
@@ -305,16 +375,6 @@
             </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-checkstyle-plugin</artifactId>
-              <version>2.10</version>
-              <configuration>
-                <consoleOutput>true</consoleOutput>
-                <configLocation>src/site/resources/checkstyle/checkstyle.xml</configLocation>
-                <suppressionsLocation>src/site/resources/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
-              </configuration>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-pmd-plugin</artifactId>
               <version>3.0.1</version>
               <configuration>
@@ -362,6 +422,19 @@
               <configuration>
                 <aggregate>true</aggregate>
                 <outputDirectory>${project.reporting.outputDirectory}/cobertura</outputDirectory>
+              </configuration>
+            </plugin>
+            <!-- checkstyle here generates the plugin's reports -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-checkstyle-plugin</artifactId>
+              <version>${maven.checkstyle.version}</version>
+              <configuration>
+                <consoleOutput>true</consoleOutput>
+                <!-- these checks are loaded from the freelib-build-tools jar -->
+                <configLocation>checkstyle/checkstyle.xml</configLocation>
+                <!-- these suppressions are project specific -->
+                <suppressionsLocation>${project.build.directory}/classes/checkstyle-suppressions.xml</suppressionsLocation>
               </configuration>
             </plugin>
           </reportPlugins>

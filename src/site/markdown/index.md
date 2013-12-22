@@ -4,7 +4,7 @@ This project gives you a Solr filter, packaged in a jar, that can be dropped int
 
 The filter gives you a nice, human-friendly, way to facet on the language codes in your metadata.  It doesn't actually change the values in the stored field (if the field's data is stored), but just adds an English text version of the ISO-639 code to the index.
 
-The idea for this project came from <a href="https://github.com/ruebot">Nick Ruest</a> (<a href="https://twitter.com/ruebot">@ruebot</a>).  He mentioned the idea in the #islandora IRC channel, and I thought it sounded like a good idea, so I implemented it.  It seems like a pretty easy win for folks working with Solr and metadata that uses ISO-639 codes.
+The idea for this project came from <a href="https://github.com/ruebot">Nick Ruest</a>.  He mentioned the idea in the #islandora IRC channel, and I thought it sounded like a good idea, so I implemented it.  It seems like a pretty easy win for folks working with Solr and metadata that uses ISO-639 codes.
 
 ### Getting Started
 
@@ -16,4 +16,4 @@ You can choose to download a pre-built jar file, build the project for yourself 
 
 * After you have built or downloaded the filter, learn how to [configure](configure.html "Configure Solr to use Solr ISO-639 Filter") it.
 
-_<br/>If you are interested in learning how you can run Solr from within Maven, take a look at one of my other projects, <a href="http://projects.freelibrary.info/solr-jetty-maven">solr-jetty-maven</a>.  To add a new filter to Solr with <a href="http://projects.freelibrary.info/solr-jetty-maven">solr-jetty-maven</a>, you just need to add the filter as a dependency in the pom.xml file._
+_<br/>If you are interested in learning how you can run Solr from within Maven, take a look at one of my other projects, <a href="http://projects.freelibrary.info/solr-jetty-maven">solr-jetty-maven</a>.  To add a new filter to Solr with solr-jetty-maven, you just add the filter as a dependency in the pom.xml file._

@@ -1,0 +1,8 @@
+# These files are dynamically created by the maven-dependency-plugin 
+src/main/resources/site
+
+# These files are dynamically created by the maven-resources-plugin
+src/site/markdown/coders-welcome.md
+src/site/markdown/testers-welcome.md
+src/site/markdown/documenters-welcome.md
+src/site/markdown/translators-welcome.md
