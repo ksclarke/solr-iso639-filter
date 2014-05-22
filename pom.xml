@@ -325,7 +325,6 @@
               <configuration>
                 <forkCount>3</forkCount>
                 <reuseForks>true</reuseForks>
-                <argLine>-XX:-UseSplitVerifier</argLine>
               </configuration>
             </plugin>
             <plugin>
@@ -469,6 +468,7 @@
           <excludes>
             <exclude>**/*IntegrationTest.java</exclude>
           </excludes>
+          <argLine>-XX:-UseSplitVerifier</argLine>
         </configuration>
       </plugin>
     </plugins>
