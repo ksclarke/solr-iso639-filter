@@ -1,6 +1,6 @@
-# solr-iso639-filter
+# solr-iso639-filter [![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=master)](https://travis-ci.org/ksclarke/solr-iso639-filter)
 
-A Solr filter that converts ISO-639-1 and ISO-639-2 codes into human-readable text that can be used as a Solr facet.  It has been tested against Solr versions 3.6.1 through 4.8.0.
+A Solr filter that converts ISO-639-1 and ISO-639-2 codes into human-readable text that can be used as a Solr facet.  It has been tested against Solr versions 3.6.1 through 4.8.0.  It now requires at least JDK 7, minimum update 55 (Lucene made this a requirement as of 4.8.0).
 
 ### Getting Started
 
@@ -33,15 +33,10 @@ and
 
 If you don't know the appropriate places, check out the <a href="http://projects.freelibrary.info/solr-iso639-filter/">project's documentation</a> for more detailed information.
 
-### Project Status
-
-[![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=master)](https://travis-ci.org/ksclarke/solr-iso639-filter) (master branch)<br/>
-[![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=develop)](https://travis-ci.org/ksclarke/solr-iso639-filter) (develop branch)
-
 ### License
 
 Apache Software License, version 2.0
 
 ### Contact
 
-If you have questions about solr-iso639-filter feel free to contact me, Kevin S. Clarke, at ksclarke@gmail.com or, if you encounter a problem, [file an issue](https://github.com/ksclarke/solr-iso639-filter/issues "GitHub Issue Queue").
+If you have questions about solr-iso639-filter feel free to ask them on the FreeLibrary Projects [mailing list](https://groups.google.com/forum/#!forum/freelibrary-projects); or, if you encounter a problem, please feel free to [open an issue](https://github.com/ksclarke/solr-iso639-filter/issues "GitHub Issue Queue") in the project's issue queue.
