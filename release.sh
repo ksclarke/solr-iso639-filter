@@ -6,8 +6,8 @@
 # anyone other than the person who is pushing the jars into the Maven repo.
 #
 # Usage (to release a subset or to release all possible supported versions:
-#     ./release 4.4.0 4.5.0 4.5.1
-#     ./release
+#     ./release.sh 4.4.0 4.5.0 4.5.1
+#     ./release.sh
 #
 # For the release to be able to sign the artifacts, GPG will ask for a passphrase
 #
@@ -24,7 +24,7 @@
 RELEASE_VERSION="r20131208"
 
 # The versions of Solr that are supported by this script
-SOLR_VERSIONS="3.6.1 3.6.2 4.0.0 4.1.0 4.2.0 4.2.1 4.3.0 4.3.1 4.4.0 4.5.0 4.5.1 4.6.0"
+SOLR_VERSIONS="3.6.1 3.6.2 4.0.0 4.1.0 4.2.0 4.2.1 4.3.0 4.3.1 4.4.0 4.5.0 4.5.1 4.6.0 4.6.1 4.7.0 4.7.1 4.7.2 4.8.0"
 
 # Just isolating this in case I want to use this script for another Solr filter or ?
 RELEASE_ARTIFACT="solr-iso639-filter"
@@ -54,15 +54,15 @@ do
     fi
   done
 
-  # We couldn't find the requested Solr version so let's punt on the request
+  # We couldn't find the requested Solr version so we will punt on the request
   if ! $FOUND; then
     echo "Sorry, ${SOLR_VERSION} is not a supported Solr version"
     exit 1
   fi
 done
 
-# If we're running this on the 'develop' branch, we need to twiddle the pom.xml
-# Really this should only be done for testing; releases should come from 'master'
+# If we're running this on the "develop" branch, we need to twiddle the pom.xml
+# Really this should only be done for testing; releases should come from "master"
 if grep -q "${SV}-SNAPSHOT" pom.xml; then
   DEV_BRANCH=true
   sed -i -e "s/${SV}-SNAPSHOT/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
