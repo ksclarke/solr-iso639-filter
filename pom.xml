@@ -59,7 +59,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- version of solr that we build to as a default -->
-    <solr.version>4.6.0</solr.version>
+    <solr.version>4.8.0</solr.version>
     <solr.scope>4.x-2</solr.scope>
     <!-- other versions used multiple times in the pom -->
     <freelib.build.tools.version>0.0.1</freelib.build.tools.version>
@@ -93,6 +93,11 @@
       <scope>test</scope>
     </dependency>
     <!-- compile time dependencies -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.7</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.solr</groupId>
       <artifactId>solr-core</artifactId>
@@ -232,8 +237,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.5.1</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>
       <!-- cleans up build artifacts -->
@@ -265,9 +270,9 @@
           <docfilessubdirs>true</docfilessubdirs>
           <links>
             <link>http://download.oracle.com/javase/7/docs/api/</link>
-            <link>http://lucene.apache.org/solr/4_4_0/solr-core/</link>
-            <link>http://lucene.apache.org/core/4_4_0/core/</link>
-            <link>http://lucene.apache.org/core/4_4_0/analyzers-common/</link>
+            <link>http://lucene.apache.org/solr/4_8_0/solr-core/</link>
+            <link>http://lucene.apache.org/core/4_8_0/core/</link>
+            <link>http://lucene.apache.org/core/4_8_0/analyzers-common/</link>
           </links>
           <notimestamp>true</notimestamp>
           <show>protected</show>
@@ -638,6 +643,76 @@
         <solr.scope>4.x-2</solr.scope>
         <!-- redundant, but `mvn release:prepare` needs this -->
         <solr.version>4.5.1</solr.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.6.0</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.6.0</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.6.0</solr.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.6.1</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.6.1</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.6.1</solr.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.7.0</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.7.0</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.7.0</solr.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.7.1</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.7.1</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.7.1</solr.version>
+      </properties>
+    </profile>
+    <profile>
+      <id>solr-4.7.2</id>
+      <activation>
+        <property>
+          <name>solr.version</name>
+          <value>4.7.2</value>
+        </property>
+      </activation>
+      <properties>
+        <solr.scope>4.x-2</solr.scope>
+        <!-- redundant, but `mvn release:prepare` needs this -->
+        <solr.version>4.7.2</solr.version>
       </properties>
     </profile>
     <!-- a build profile just used on Travis runs to run the integration tests -->
