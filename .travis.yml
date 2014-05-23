@@ -25,7 +25,7 @@ env:
 
 install: "mvn -DskipTests=true -Dsolr.version=${SOLR_VERSION} install"
 
-before_script: "curl https://raw.github.com/ksclarke/travis-solr/develop/travis-solr.sh | SOLR_VERSION=${SOLR_VERSION} SOLR_CONFS=src/test/resources/schemas/${SOLR_SCOPE}/schema.xml SOLR_LIBS=`find . -name solr-iso639-filter-*.jar` bash"
+before_script: "curl https://raw.githubusercontent.com/ksclarke/travis-solr/develop/travis-solr.sh | SOLR_VERSION=${SOLR_VERSION} SOLR_CONFS=src/test/resources/schemas/${SOLR_SCOPE}/schema.xml SOLR_LIBS=`find . -name solr-iso639-filter-*.jar` bash"
 
 script: "mvn -Ptravis -Dsolr.version=${SOLR_VERSION} install"
 
