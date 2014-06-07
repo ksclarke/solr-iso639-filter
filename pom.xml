@@ -7,7 +7,7 @@
     Maven 3.x will warn about using variables in the version, but version shouldn't
     really _have_ to be static; cf. http://jira.codehaus.org/browse/MNG-4715
   -->
-  <version>4.8.1-r20131208</version>
+  <version>4.8.1-r20131208-SNAPSHOT</version>
 
   <name>Solr ISO-639 Filter</name>
   <description>Solr filter that converts ISO-639-1 and ISO-639-2 codes into text</description>
