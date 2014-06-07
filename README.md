@@ -1,6 +1,6 @@
 # solr-iso639-filter [![Build Status](https://travis-ci.org/ksclarke/solr-iso639-filter.png?branch=master)](https://travis-ci.org/ksclarke/solr-iso639-filter)
 
-A Solr filter that converts ISO-639-1 and ISO-639-2 codes into human-readable text that can be used as a Solr facet.  It has been tested against Solr versions 3.6.1 through 4.8.0.  It now requires at least JDK 7, minimum update 55 (Lucene made this a requirement as of 4.8.0).
+A Solr filter that converts ISO-639-1 and ISO-639-2 codes into human-readable text that can be used as a Solr facet.  It has been tested against Solr versions 3.6.1 through 4.8.1.  It now requires at least JDK 7, minimum update 55 (Lucene made this a requirement as of 4.8.0).
 
 ### Getting Started
 
