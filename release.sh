@@ -13,7 +13,7 @@
 #
 # Written by: Kevin S. Clarke <ksclarke@gmail.com>
 # Created: 2013-11-11
-# Last Updated: 2013-11-11
+# Last Updated: 2014-06-06
 # License: Apache License, Version 2.0
 #
 # System Dependencies: sed, grep, mvn, git
@@ -24,7 +24,7 @@
 RELEASE_VERSION="r20131208"
 
 # The versions of Solr that are supported by this script
-SOLR_VERSIONS="3.6.1 3.6.2 4.0.0 4.1.0 4.2.0 4.2.1 4.3.0 4.3.1 4.4.0 4.5.0 4.5.1 4.6.0 4.6.1 4.7.0 4.7.1 4.7.2 4.8.0"
+SOLR_VERSIONS="3.6.1 3.6.2 4.0.0 4.1.0 4.2.0 4.2.1 4.3.0 4.3.1 4.4.0 4.5.0 4.5.1 4.6.0 4.6.1 4.7.0 4.7.1 4.7.2 4.8.0 4.8.1"
 
 # Just isolating this in case I want to use this script for another Solr filter or ?
 RELEASE_ARTIFACT="solr-iso639-filter"
