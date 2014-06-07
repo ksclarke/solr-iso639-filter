@@ -25,7 +25,7 @@
             <theme>site</theme>
             <brand>
                 <name>FreeLibrary Projects</name>
-                <href>http://freelibrary.info</href>
+                <href>http://projects.freelibrary.info</href>
             </brand>
             <slogan>A Solr filter that converts ISO-639-1 and ISO-639-2 codes into a human-friendly
                 facet</slogan>
