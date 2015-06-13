@@ -41,7 +41,7 @@ public class ISO639ConversionFilterFactory extends TokenFilterFactory {
      * {@link TokenStream}.
      */
     @Override
-    public ISO639ConversionFilter create(TokenStream aTokenStream) {
+    public ISO639ConversionFilter create(final TokenStream aTokenStream) {
         return new ISO639ConversionFilter(aTokenStream);
     }
 

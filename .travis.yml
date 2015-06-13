@@ -28,6 +28,8 @@ env:
     - SOLR_VERSION=4.10.0 SOLR_SCOPE=4.x-2 DEBUG=true
     - SOLR_VERSION=4.10.1 SOLR_SCOPE=4.x-2 DEBUG=true
     - SOLR_VERSION=4.10.2 SOLR_SCOPE=4.x-2 DEBUG=true
+    - SOLR_VERSION=4.10.3 SOLR_SCOPE=4.x-2 DEBUG=true
+    - SOLR_VERSION=4.10.4 SOLR_SCOPE=4.x-2 DEBUG=true
 
 install: "mvn -DskipTests=true -Dsolr.version=${SOLR_VERSION} install"
 
