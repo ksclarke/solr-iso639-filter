@@ -157,10 +157,9 @@
   </build>
 
   <profiles>
-    <!--
-      Below is pretty verbose way to check solr.version(s), but Maven doesn't
-      give us a startsWith() check for command line properties, so...
-    -->
+    <!-- Below is pretty verbose way to check solr.version(s), but Maven doesn't give us a startsWith() check for command 
+      line properties, so... -->
+    <!-- TODO: can this all be put into a build script? Something that cycles through an array of values or something? -->
     <profile>
       <id>solr-3.6.1</id>
       <activation>
