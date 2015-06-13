@@ -42,7 +42,7 @@ public class ISO639ConversionFilterFactory extends BaseTokenFilterFactory {
      * @param aMap A map of initial values
      */
     @Override
-    public void init(Map<String, String> aMap) {
+    public void init(final Map<String, String> aMap) {
         super.init(aMap);
         assureMatchVersion();
     }
@@ -54,7 +54,7 @@ public class ISO639ConversionFilterFactory extends BaseTokenFilterFactory {
      * @return A newly created {@link ISO639ConversionFilter}
      */
     @Override
-    public ISO639ConversionFilter create(TokenStream aTokenStream) {
+    public ISO639ConversionFilter create(final TokenStream aTokenStream) {
         return new ISO639ConversionFilter(aTokenStream);
     }
 

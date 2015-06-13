@@ -34,7 +34,7 @@ public class ISO639ConversionFilterFactory extends TokenFilterFactory {
      *
      * @param aMap A map of initial values
      */
-    public ISO639ConversionFilterFactory(Map<String, String> aMap) {
+    public ISO639ConversionFilterFactory(final Map<String, String> aMap) {
         super(aMap);
     }
 
@@ -45,7 +45,7 @@ public class ISO639ConversionFilterFactory extends TokenFilterFactory {
      * @param aTokenStream A token stream from which to create the filter
      */
     @Override
-    public ISO639ConversionFilter create(TokenStream aTokenStream) {
+    public ISO639ConversionFilter create(final TokenStream aTokenStream) {
         return new ISO639ConversionFilter(aTokenStream);
     }
 
