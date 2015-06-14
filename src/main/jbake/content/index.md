@@ -56,8 +56,7 @@ If you want to build for another version of Solr, you can supply that version as
 
     mvn -Dsolr.version=3.6.2 install
 
-<br/>This should work for any of the supported versions of Solr (versions 3.6.1 through <script>
-document.write($version);</script><noscript>${version}</noscript>).
+<br/>This should work for any of the supported versions of Solr (versions 3.6.1 through <script>document.write($version.split('-', 1));</script>).
 
 To build the project's documentation, type:
 
