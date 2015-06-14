@@ -2,8 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- Maven 3.x will warn about using variables in the version, but version shouldn't really _have_ to be static (should 
-    it?) Cf. http://jira.codehaus.org/browse/MNG-4715 -->
+  <!--
+    Maven 3.x will warn about using variables in the version, but version shouldn't really _have_ to be static (should it?)
+    Cf. http://jira.codehaus.org/browse/MNG-4715
+  -->
   <version>${solr.version}-SNAPSHOT</version>
   <artifactId>solr-iso639-filter</artifactId>
   <name>Solr ISO-639 Filter</name>
@@ -141,17 +143,36 @@
       </plugin>
       <!-- Checks project's code for conformance to coding standards -->
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <systemPropertyVariables>
             <solr.scope>${solr.scope}</solr.scope>
           </systemPropertyVariables>
         </configuration>
+      </plugin>
+      <!-- Plugin to generate JavaDocs -->
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+      <!-- Plugin to run Sonar analysis -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+      </plugin>
+      <!-- Plugin to enforce some rules about the project -->
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+      </plugin>
+      <!-- Plugin to generate the project's website -->
+      <plugin>
+        <groupId>br.com.ingenieux</groupId>
+        <artifactId>jbake-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
