@@ -32,9 +32,6 @@ RELEASE_ARTIFACT="solr-iso639-filter"
 # This hard-coded string that allows us to swap in the right Solr version number
 SV="\${solr.version}"
 
-# Whether we're running in 'develop' (for testing) or 'master' (for realz)
-DEV_BRANCH=false
-
 # Check to see if we've passed in a subset of Solr versions to use
 if [ $# -eq 0 ]; then
   read -a SOLR_SUBSET <<< "$SOLR_VERSIONS"
@@ -61,15 +58,9 @@ do
   fi
 done
 
-# If we're running this on the "develop" branch, we need to twiddle the pom.xml
-# Really this should only be done for testing; releases should come from "master"
 if grep -q "${SV}-SNAPSHOT" pom.xml; then
-  DEV_BRANCH=true
   sed -i -e "s/${SV}-SNAPSHOT/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
-  git commit -am "changing pom.xml's version via release script [skip ci]"
-
-  # Output a little reminder to delete any artifacts created through testing
-  echo "Running on the 'develop' branch -- PLEASE DELETE ALL ARTIFACTS!"
+  git commit -am "Update pom.xml's version via release script [skip ci]"
 fi
 
 # Cycle through all possible Solr versions and process the ones we want
@@ -97,15 +88,11 @@ do
       STATUS=$?
       if [ $STATUS -ne 0 ]; then
         LABEL=${SOLR_VERSION}-${RELEASE_VERSION}
-        if ! $DEV_BRANCH; then
-          sed -i -e "s/${LABEL}/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
-        else
-          sed -i -e "s/${LABEL}/${SV}-SNAPSHOT/" pom.xml
-        fi
+        sed -i -e "s/${LABEL}/${SV}-SNAPSHOT/" pom.xml
 
         # Record the change to the pom.xml version in git so we have clean slate
         git add pom.xml
-        git commit -m "changing pom.xml's version via release script [skip ci]"
+        git commit -m "Update pom.xml's version via release script [skip ci]"
 
         echo "There was a preparation error; please check the script's output"
         exit 1
@@ -118,15 +105,10 @@ do
       # ${SV} is swapped out with ${SOLR_VERSION}; we need to set it back
       SOLR_STAMP=${SOLR_VERSION}-${RELEASE_VERSION}-SNAPSHOT
       sed -i -e "s/${SOLR_STAMP}/${SV}-SNAPSHOT/" pom.xml
-      git commit -am "changing pom.xml's version via release script [skip ci]"
+      git commit -am "Update pom.xml's version via release script [skip ci]"
     fi
   done
 done
-
-# If not on 'develop' branch, put the pom.xml's version back the way it should be
-if ! $DEV_BRANCH; then
-  sed -i -e "s/${SV}-SNAPSHOT/${SV}-${RELEASE_VERSION}-SNAPSHOT/" pom.xml
-fi
 
 # One last little cosmetic EOL to make the output easier to read
 echo ""
