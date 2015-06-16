@@ -79,41 +79,11 @@
       <artifactId>xom</artifactId>
       <scope>test</scope>
     </dependency>
-    <!-- we supply the logging library of our choice for our tests -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- compile time dependencies -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.apache.solr</groupId>
       <artifactId>solr-core</artifactId>
       <version>${solr.version}</version>
-      <scope>compile</scope>
-      <!-- hadoop-auth still has a hard-coded logging library to exclude -->
-      <exclusions>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-jdk14</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>jcl-over-slf4j</artifactId>
-        </exclusion>
-      </exclusions>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -152,6 +122,15 @@
             <solr.scope>${solr.scope}</solr.scope>
           </systemPropertyVariables>
         </configuration>
+        <dependencies>
+          <!-- If we put this in test scope in dependencies section above, it still leaks out to projects using solr-iso639-filter -->
+          <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>runtime</scope>
+          </dependency>
+        </dependencies>
       </plugin>
       <!-- Plugin to generate JavaDocs -->
       <plugin>
@@ -180,7 +159,6 @@
   <profiles>
     <!-- Below is pretty verbose way to check solr.version(s), but Maven doesn't give us a startsWith() check for command 
       line properties, so... -->
-    <!-- TODO: can this all be put into a build script? Something that cycles through an array of values or something? -->
     <profile>
       <id>solr-3.6.1</id>
       <activation>
@@ -541,6 +519,15 @@
                 </goals>
               </execution>
             </executions>
+            <dependencies>
+              <!-- If we put this in test scope in dependencies section above, it still leaks out to projects using solr-iso639-filter -->
+              <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+                <scope>runtime</scope>
+              </dependency>
+            </dependencies>
           </plugin>
         </plugins>
       </build>
