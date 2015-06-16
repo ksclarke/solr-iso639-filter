@@ -90,7 +90,8 @@ do
       mvn -q release:prepare -Dsolr.version=${SOLR_VERSION} \
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion=${SV}-${RELEASE_VERSION} -Dresume=false \
-        -DdevelopmentVersion=${SV}-${RELEASE_VERSION}-SNAPSHOT
+        -DdevelopmentVersion=${SV}-${RELEASE_VERSION}-SNAPSHOT \
+        -DscmCommentPrefix="[maven-release-plugin] [skip ci] "
 
       # We want to catch passphrase errors since they're subject to typos
       STATUS=$?
@@ -111,7 +112,8 @@ do
       fi
 
       # We're good to publish the official release
-      mvn -Dsolr.version=${SOLR_VERSION} -q release:perform
+      mvn -Dsolr.version=${SOLR_VERSION} -q release:perform \
+      -DscmCommentPrefix="[maven-release-plugin] [skip ci] "
 
       # ${SV} is swapped out with ${SOLR_VERSION}; we need to set it back
       SOLR_STAMP=${SOLR_VERSION}-${RELEASE_VERSION}-SNAPSHOT
