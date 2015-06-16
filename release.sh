@@ -81,6 +81,12 @@ do
       echo ""
       echo "Publishing ${RELEASE_ARTIFACT} version: ${SOLR_VERSION}"
       mvn -Dsolr.version=${SOLR_VERSION} -q clean deploy
+
+      if [[ $? != 0 ]]; then
+        echo "Failed to successfully build ${SOLR_VERSION}"
+        exit 1
+      fi
+
       mvn -q release:prepare -Dsolr.version=${SOLR_VERSION} \
         -Dtag=${RELEASE_ARTIFACT}-${SOLR_VERSION}-${RELEASE_VERSION} \
         -DreleaseVersion=${SV}-${RELEASE_VERSION} -Dresume=false \
