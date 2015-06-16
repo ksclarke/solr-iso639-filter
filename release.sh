@@ -32,6 +32,12 @@ RELEASE_ARTIFACT="solr-iso639-filter"
 # This hard-coded string that allows us to swap in the right Solr version number
 SV="\${solr.version}"
 
+# Check to see that we're running this script from the master branch
+if [ $(git branch | grep "^\* " | cut -d ' ' -f 2) != "master" ]; then
+  echo "Please only run this script from the 'master' branch"
+  exit 1
+fi
+
 # Check to see if we've passed in a subset of Solr versions to use
 if [ $# -eq 0 ]; then
   read -a SOLR_SUBSET <<< "$SOLR_VERSIONS"
